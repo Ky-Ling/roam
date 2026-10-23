@@ -1,11 +1,48 @@
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
+import { useState } from "react";
+import { useReducedMotion } from "react-native-reanimated";
 
+import { STAYS } from "@/data/stays";
 import { useSession } from "@/hooks/use-session";
+import { orderBy } from "@/lib/utils";
 
-/** Orchestrator for the home placeholder: who's signed in, and signing out. */
+import { SEARCH_EXAMPLE, type Category } from "./constants";
+import { greetingName } from "./utils";
+
+/** Orchestrator for home: the guest, the search sentence, and the category's featured stays. */
 export const useHome = () => {
-  const insets = useSafeAreaInsets();
-  const { user, signOut } = useSession();
+  const router = useRouter();
+  const { user } = useSession();
+  const reducedMotion = useReducedMotion();
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState<Category>("all");
 
-  return { topInset: insets.top, displayName: user?.name ?? user?.email ?? "", signOut };
+  const name = greetingName(user);
+  
+  const featured = orderBy(
+    category === "all" ? STAYS : STAYS.filter((s) => s.type === category),
+    ["rating", "reviewCount"],
+    ["desc", "desc"],
+  );
+
+  const submitSearch = () => {
+    // An empty submit searches the example the bar is showing
+    const q = query.trim() || SEARCH_EXAMPLE;
+    router.navigate({ pathname: "/search", params: { q } });
+    setQuery("");
+  };
+
+  return {
+    name,
+    initial: name.charAt(0).toUpperCase(),
+    avatarUrl: user?.imageUrl,
+    query,
+    setQuery,
+    submitSearch,
+    openSearch: () => router.navigate({ pathname: "/search", params: { q: "" } }),
+    category,
+    setCategory,
+    featured,
+    reducedMotion,
+  };
 };
