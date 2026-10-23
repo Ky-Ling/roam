@@ -14,7 +14,7 @@ export const VerifyEmailScreen = () => {
   // The ref comes out on its own: the React Compiler treats any object holding a ref as ref-like.
   const { inputRef, ...vm } = useVerifyEmail();
 
-  // Opened without a sign-up in progress (deep link or reload): start over.
+  // Opened with no sign-up or new-device sign-in waiting for a code (deep link or reload): start over.
   if (!vm.email) return <Redirect href="/sign-up" />;
 
   return (
@@ -24,7 +24,7 @@ export const VerifyEmailScreen = () => {
         <Text variant="lead" className="font-jakarta-semibold">
           {vm.email}
         </Text>
-        . Enter it below to finish creating your account.
+        . {vm.flow?.kind === "sign-in" ? "Enter it below to confirm it's you." : "Enter it below to finish creating your account."}
       </AuthIntro>
       <View className="mt-6">
         <CodeBoxes
@@ -43,7 +43,7 @@ export const VerifyEmailScreen = () => {
       {vm.error && <StatusBanner tone="error" message={vm.error} className="mt-6" />}
       {vm.notice && <StatusBanner tone="success" message={vm.notice} className="mt-6" />}
       <Button
-        title="Verify email"
+        title={vm.flow?.kind === "sign-in" ? "Verify" : "Verify email"}
         trailingIcon="arrowRight"
         loading={vm.loading}
         disabled={!vm.canVerify}

@@ -44,7 +44,8 @@ export const OnboardingSlide = ({ slide, width, height, bottomInset }: Onboardin
             {slide.body}
           </Text>
         </View>
-        <View className="mt-4 h-31" />
+        {/* Room for the footer: 56 + 12 + 56 buttons, then 12 + 4 + 20 for the Sign in link */}
+        <View className="mt-4 h-40" />
       </View>
     </View>
   </View>

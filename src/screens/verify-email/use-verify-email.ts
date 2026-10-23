@@ -1,26 +1,35 @@
+import { useSignIn, useSignUp } from "@clerk/expo";
+import type { SetActiveNavigate } from "@clerk/expo/types";
 import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import type { TextInput } from "react-native";
 
-import { getPendingSignUp, resendEmailCode, verifyEmailCode } from "@/lib/auth/mock-auth";
+import { SESSION_TASK_MESSAGE } from "@/constants/auth";
+import { clerkErrorMessage, fieldMessage, pendingCodeFlow } from "@/lib/auth/clerk";
 
 import { CODE_LENGTH, RESEND_COOLDOWN_S } from "./constants";
 import { formatCountdown, sanitizeCode } from "./utils";
 
-/** Orchestrator for email verification: the code, checking it, and resending with a cooldown. */
+/**
+ * Orchestrator for email verification: the code, checking it, and resending with a cooldown.
+ * Serves sign-up (confirm the email) and sign-in from a new device (confirm it's you).
+ */
 export const useVerifyEmail = () => {
   const router = useRouter();
+  const { signIn, errors: signInErrors, fetchStatus: signInStatus } = useSignIn();
+  const { signUp, errors: signUpErrors, fetchStatus: signUpStatus } = useSignUp();
   const inputRef = useRef<TextInput>(null);
-  // Read once: the pending sign-up only changes when this screen succeeds and leaves.
-  const [email] = useState(() => getPendingSignUp()?.email);
+  // Read once: the pending flow only changes when this screen succeeds and leaves.
+  const [flow] = useState(() => pendingCodeFlow(signIn, signUp));
   const [code, setCode] = useState("");
   const [focused, setFocused] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [resending, setResending] = useState(false);
-  // The first code went out with sign-up, so the cooldown starts right away.
+  // The first code went out before this screen opened, so the cooldown starts right away.
   const [cooldown, setCooldown] = useState(RESEND_COOLDOWN_S);
-  const [error, setError] = useState<string>();
   const [notice, setNotice] = useState<string>();
+  const [taskError, setTaskError] = useState<string>();
+  // Clerk keeps its last error until the next request; typing a new code hides it, as before.
+  const [showClerkError, setShowClerkError] = useState(true);
 
   useEffect(() => {
     if (cooldown <= 0) return;
@@ -29,43 +38,63 @@ export const useVerifyEmail = () => {
     return () => clearTimeout(id);
   }, [cooldown]);
 
+  const isSignIn = flow?.kind === "sign-in";
+  const clerkErrors = isSignIn ? signInErrors : signUpErrors;
+  const loading = (isSignIn ? signInStatus : signUpStatus) === "fetching";
+
+  // The root layout's guard moves the guest to /home once the session is active, so no navigation here.
+  const navigate: SetActiveNavigate = ({ session }) => {
+    if (session?.currentTask) setTaskError(SESSION_TASK_MESSAGE);
+  };
+
   const changeCode = (value: string) => {
     setCode(sanitizeCode(value, CODE_LENGTH));
-    setError(undefined);
+    setTaskError(undefined);
+    setShowClerkError(false);
   };
 
   const verify = async () => {
     if (code.length < CODE_LENGTH) return;
     setNotice(undefined);
-    setLoading(true);
-    const result = await verifyEmailCode({ code });
-    // On success the root layout's guard moves the guest to /home.
-    if (!result.ok) {
-      setError(result.error);
-      setLoading(false);
-    }
-  };
-
-  const resend = async () => {
-    setError(undefined);
-    setNotice(undefined);
-    setResending(true);
-    const result = await resendEmailCode();
-    setResending(false);
-    if (!result.ok) {
-      setError(result.error);
+    setShowClerkError(true);
+    if (isSignIn) {
+      const { error } = await signIn.mfa.verifyEmailCode({ code });
+      if (!error && signIn.status === "complete") await signIn.finalize({ navigate });
 
       return;
     }
+    const { error } = await signUp.verifications.verifyEmailCode({ code });
+    if (!error && signUp.status === "complete") await signUp.finalize({ navigate });
+  };
+
+  const resend = async () => {
+    setNotice(undefined);
+    setShowClerkError(true);
+    setResending(true);
+    const { error } = isSignIn ? await signIn.mfa.sendEmailCode() : await signUp.verifications.sendEmailCode();
+    setResending(false);
+    if (error) return;
     setCode("");
     setCooldown(RESEND_COOLDOWN_S);
-    setNotice(`We sent a new code to ${email}.`);
+    setNotice(`We sent a new code to ${flow?.email}.`);
     inputRef.current?.focus();
   };
 
+  // Leaving a new-device sign-in drops the half-finished attempt, so the form starts clean
+  const goBack = async () => {
+    if (isSignIn) await signIn.reset();
+    router.back();
+  };
+
+  const clerkError =
+    fieldMessage(clerkErrors.fields.code) ??
+    (clerkErrors.global ? clerkErrorMessage(clerkErrors.global[0]) : undefined);
+  const error = taskError ?? (showClerkError ? clerkError : undefined);
+
   return {
     inputRef,
-    email,
+    flow,
+    email: flow?.email,
     code,
     codeLength: CODE_LENGTH,
     changeCode,
@@ -83,6 +112,6 @@ export const useVerifyEmail = () => {
     canResend: cooldown <= 0 && !resending && !loading,
     cooldownLabel: cooldown > 0 ? formatCountdown(cooldown) : undefined,
     resend,
-    goBack: router.back,
+    goBack,
   };
 };

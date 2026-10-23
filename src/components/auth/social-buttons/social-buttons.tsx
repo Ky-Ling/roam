@@ -1,9 +1,8 @@
 import { View } from "react-native";
 
-import { AppleLogo } from "@/components/ui/apple-logo";
 import { Button } from "@/components/ui/button";
 import { GoogleLogo } from "@/components/ui/google-logo";
-import type { OAuthProvider } from "@/lib/auth/mock-auth";
+import type { OAuthProvider } from "@/lib/auth/types";
 
 type SocialButtonsProps = {
   onContinue: (provider: OAuthProvider) => void;
@@ -31,19 +30,6 @@ export const SocialButtons = ({ onContinue, loadingProvider, disabled }: SocialB
       disabled={disabled && loadingProvider !== "google"}
       onPress={() => onContinue("google")}
     />
-    <Button
-      title="Continue with Apple"
-      variant="secondary"
-      align="start"
-      titleVariant="caption"
-      leading={
-        <View className={logoSlot}>
-          <AppleLogo />
-        </View>
-      }
-      loading={loadingProvider === "apple"}
-      disabled={disabled && loadingProvider !== "apple"}
-      onPress={() => onContinue("apple")}
-    />
+    {/* Continue with Apple returns once Apple is configured in Clerk (AppleLogo is ready in ui/) */}
   </View>
 );
