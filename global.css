@@ -25,6 +25,7 @@
   --color-surface-muted: #F4F4F7;
   --color-border: #E5E7EB;
   --color-glass: rgba(255, 255, 255, 0.7);
+  --color-scrim: rgba(11, 11, 26, 0.45);
   --color-rating: #FCB500;
   --color-success: #15834B;
   --color-success-subtle: #E4F4EC;
@@ -63,6 +64,24 @@
   letter-spacing: -1.5px;
 }
 
+/* Onboarding headline: between heading and display. */
+@utility type-hero {
+  font-family: var(--font-jakarta-bold);
+  font-size: 44px;
+  line-height: 44px;
+  letter-spacing: -1.5px;
+}
+
+/* Auth screen titles: smaller than the onboarding hero, still tight.
+   iOS trims a short line box from the top, and Jakarta's cap + descent needs ~37 at this size:
+   a 36 line-height clipped the top of "C". */
+@utility type-headline {
+  font-family: var(--font-jakarta-bold);
+  font-size: 38px;
+  line-height: 40px;
+  letter-spacing: -1.2px;
+}
+
 @utility type-heading {
   font-family: var(--font-jakarta-bold);
   font-size: 28px;
@@ -87,6 +106,13 @@
   font-family: var(--font-jakarta-medium);
   font-size: 16px;
   line-height: 24px;
+}
+
+/* Intro paragraphs under a hero or heading: body size, tighter rhythm. */
+@utility type-lead {
+  font-family: var(--font-jakarta);
+  font-size: 16px;
+  line-height: 22px;
 }
 
 /* Same as type-body-medium minus line-height: a single-line iOS TextInput with a

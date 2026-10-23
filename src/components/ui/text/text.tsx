@@ -4,10 +4,13 @@ import { cx } from "@/lib/utils";
 
 const variants = {
   display: "type-display",
+  hero: "type-hero",
+  headline: "type-headline",
   heading: "type-heading",
   title: "type-title",
   body: "type-body",
   "body-medium": "type-body-medium",
+  lead: "type-lead",
   caption: "type-caption",
   button: "type-button",
   label: "type-label",

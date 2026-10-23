@@ -19,5 +19,8 @@ export const InputFieldsSection = ({ name, onChangeName }: InputFieldsSectionPro
     <TextField icon="user" placeholder="Enter your name" accessibilityLabel="Name" />
     <TextField icon="user" value={name} onChangeText={onChangeName} accessibilityLabel="Full name" />
     <TextField icon="lock" secureTextEntry defaultValue="password12" accessibilityLabel="Password" />
+    <TextField icon="mail" label="Email address" placeholder="you@example.com" />
+    <TextField icon="lock" label="Password" placeholder="At least 8 characters" secureTextEntry />
+    <TextField icon="mail" label="Email address" defaultValue="you@example" error="Enter a valid email address." />
   </SectionCard>
 );
