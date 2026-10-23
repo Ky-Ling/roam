@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useWindowDimensions, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+import { useOAuthSignIn } from "@/hooks/use-oauth-sign-in";
 import { clamp } from "@/lib/utils";
 
 import { SLIDES } from "./constants";
@@ -10,6 +11,7 @@ import { SLIDES } from "./constants";
 /** Orchestrator for onboarding: page size, the active slide, and the way into auth. */
 export const useOnboarding = () => {
   const router = useRouter();
+  const oauth = useOAuthSignIn();
   const insets = useSafeAreaInsets();
   const { width, height } = useWindowDimensions();
   const [index, setIndex] = useState(0);
@@ -22,6 +24,7 @@ export const useOnboarding = () => {
   const getItemLayout = (_: unknown, i: number) => ({ length: width, offset: width * i, index: i });
 
   const goToAuth = () => router.push("/sign-up");
+  const goToSignIn = () => router.push("/sign-in");
 
   return {
     slides: SLIDES,
@@ -35,5 +38,9 @@ export const useOnboarding = () => {
     onScroll,
     getItemLayout,
     goToAuth,
+    goToSignIn,
+    continueWithGoogle: () => oauth.continueWith("google"),
+    googleLoading: oauth.oauthLoading === "google",
+    error: oauth.oauthError,
   };
 };

@@ -28,8 +28,11 @@ export const OnboardingScreen = () => {
         count={vm.slides.length}
         activeIndex={vm.index}
         bottomInset={vm.bottomInset}
+        googleLoading={vm.googleLoading}
+        error={vm.error}
         onGetStarted={vm.goToAuth}
-        onContinueWithGoogle={vm.goToAuth}
+        onContinueWithGoogle={vm.continueWithGoogle}
+        onSignIn={vm.goToSignIn}
       />
     </View>
   );

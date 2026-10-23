@@ -1,10 +1,18 @@
-import { useSyncExternalStore } from "react";
+import { useAuth, useUser } from "@clerk/expo";
 
-import { clearSession, getSessionUser, subscribeSession } from "@/lib/auth/mock-session";
+export type SessionUser = { name?: string; email: string };
 
-/** The signed-in guest. Clerk's useAuth / useUser replace the mock store behind this hook. */
+/** The signed-in guest, from Clerk. isLoaded turns true once Clerk restores the session from the token cache. */
 export const useSession = () => {
-  const user = useSyncExternalStore(subscribeSession, getSessionUser, getSessionUser);
+  const { isLoaded, isSignedIn, signOut } = useAuth();
+  const { user: clerkUser } = useUser();
+  
+  const user: SessionUser | null = clerkUser
+    ? {
+        name: clerkUser.fullName ?? undefined,
+        email: clerkUser.primaryEmailAddress?.emailAddress ?? "",
+      }
+    : null;
 
-  return { isSignedIn: !!user, user, signOut: clearSession };
+  return { isLoaded, isSignedIn: !!isSignedIn, user, signOut: () => signOut() };
 };

@@ -1,33 +1,20 @@
+import { ClerkProvider } from "@clerk/expo";
+import { tokenCache } from "@clerk/expo/token-cache";
 import "../../global.css";
 
-import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
+import { AppNavigator } from "@/components/app-navigator";
 
-import { useAppFonts } from "@/hooks/use-app-fonts";
-import { useSession } from "@/hooks/use-session";
+const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
-const RootLayout = () => {
-  const ready = useAppFonts();
-  const { isSignedIn } = useSession();
+if (!publishableKey) {
+  throw new Error("Missing EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY. Add it to .env.local and restart the dev server.");
+}
 
-  if (!ready) return null;
-
-  return (
-    <>
-      <StatusBar style="dark" />
-      <Stack>
-        {/* Flipping the guard redirects and drops the other side's history, so Back can't cross it. */}
-        <Stack.Protected guard={!isSignedIn}>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-        </Stack.Protected>
-        <Stack.Protected guard={isSignedIn}>
-          <Stack.Screen name="home" options={{ headerShown: false }} />
-        </Stack.Protected>
-        <Stack.Screen name="design-system" options={{ title: "Design system" }} />
-      </Stack>
-    </>
-  );
-};
+// tokenCache keeps the session in expo-secure-store, so guests stay signed in across launches
+const RootLayout = () => (
+  <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
+    <AppNavigator />
+  </ClerkProvider>
+);
 
 export default RootLayout;
