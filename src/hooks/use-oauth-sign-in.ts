@@ -15,6 +15,7 @@ export const useOAuthSignIn = () => {
   const continueWith = async (provider: OAuthProvider) => {
     setOAuthError(undefined)
     setOAuthLoading(provider)
+    
     try {
       const { createdSessionId, setActive } = await startSSOFlow({ strategy: strategies[provider] })
       // No session means the guest closed the browser: not an error
