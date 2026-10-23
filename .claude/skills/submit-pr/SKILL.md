@@ -55,7 +55,7 @@ Done when `git status --short` is empty or shows only files you deliberately lef
 
 ### Commit message format
 
-Conventional Commits. `scope` is the most-changed area (`app`, `api`, `components`, `hooks`, `constants`, `assets`, `studio`, `prompts`, `config`, `claude`); omit it when changes span several.
+Conventional Commits. `scope` is required, never omitted: use the most-changed area (`app`, `api`, `components`, `screens`, `hooks`, `constants`, `assets`, `studio`, `prompts`, `config`, `claude`). When changes span several areas, pick the one with the most changed files, not counting lockfiles.
 
 ```
 type(scope): concise summary
