@@ -1,8 +1,8 @@
-import { View } from "react-native";
+import { View } from "react-native"
 
-import { Text } from "@/components/ui/text";
+import { Text } from "@/components/ui/text"
 
-import { SectionCard } from "./section-card";
+import { SectionCard } from "./section-card"
 
 const palette = [
   { name: "Primary Yellow", value: "#FFC629", className: "bg-primary" },
@@ -13,7 +13,7 @@ const palette = [
   { name: "Surface Gray", value: "#F4F4F7", className: "bg-surface-muted" },
   { name: "Border Gray", value: "#E5E7EB", className: "bg-border" },
   { name: "Glass Blur", value: "rgba(255,255,255,0.7)", className: "bg-glass border border-border" },
-] as const;
+] as const
 
 const extendedPalette = [
   "bg-primary-subtle",
@@ -30,7 +30,7 @@ const extendedPalette = [
   "bg-danger-subtle",
   "bg-info-subtle",
   "bg-info-ink",
-] as const;
+] as const
 
 export const PaletteSection = () => (
   <SectionCard title="02. Color palette">
@@ -61,4 +61,4 @@ export const PaletteSection = () => (
       ))}
     </View>
   </SectionCard>
-);
+)

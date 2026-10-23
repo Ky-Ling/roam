@@ -1,5 +1,5 @@
-import { OnboardingScreen } from "@/screens/onboarding";
+import { OnboardingScreen } from "@/screens/onboarding"
 
-const IndexRoute = () => <OnboardingScreen />;
+const IndexRoute = () => <OnboardingScreen />
 
-export default IndexRoute;
+export default IndexRoute

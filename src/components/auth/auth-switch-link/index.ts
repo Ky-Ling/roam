@@ -1,1 +1,1 @@
-export { AuthSwitchLink } from "./auth-switch-link";
+export { AuthSwitchLink } from "./auth-switch-link"

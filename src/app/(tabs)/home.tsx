@@ -1,5 +1,5 @@
-import { HomeScreen } from "@/screens/home";
+import { HomeScreen } from "@/screens/home"
 
-const HomeRoute = () => <HomeScreen />;
+const HomeRoute = () => <HomeScreen />
 
-export default HomeRoute;
+export default HomeRoute

@@ -1,1 +1,1 @@
-export { PressableScale, type PressableScaleProps } from "./pressable-scale";
+export { PressableScale, type PressableScaleProps } from "./pressable-scale"

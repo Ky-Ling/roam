@@ -1,5 +1,5 @@
-import { VerifyEmailScreen } from "@/screens/verify-email";
+import { VerifyEmailScreen } from "@/screens/verify-email"
 
-const VerifyEmailRoute = () => <VerifyEmailScreen />;
+const VerifyEmailRoute = () => <VerifyEmailScreen />
 
-export default VerifyEmailRoute;
+export default VerifyEmailRoute

@@ -1,1 +1,1 @@
-export { GlassPill, type GlassPillProps } from "./glass-pill";
+export { GlassPill, type GlassPillProps } from "./glass-pill"

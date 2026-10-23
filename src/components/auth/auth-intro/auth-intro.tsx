@@ -1,10 +1,10 @@
-import type { ReactNode } from "react";
-import { View } from "react-native";
+import type { ReactNode } from "react"
+import { View } from "react-native"
 
-import { Text } from "@/components/ui/text";
+import { Text } from "@/components/ui/text"
 
 /** Hero title (break lines with \n, as the design does) and the intro paragraph under it. */
-export const AuthIntro = ({ title, children }: { title: string; children: ReactNode }) => (
+export const AuthIntro = ({ title, children }: { title: string, children: ReactNode }) => (
   <View className="mt-7 gap-3">
     <Text variant="headline" accessibilityRole="header">
       {title}
@@ -14,4 +14,4 @@ export const AuthIntro = ({ title, children }: { title: string; children: ReactN
       {children}
     </Text>
   </View>
-);
+)

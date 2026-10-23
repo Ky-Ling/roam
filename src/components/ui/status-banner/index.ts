@@ -1,1 +1,1 @@
-export { StatusBanner, type StatusBannerProps } from "./status-banner";
+export { StatusBanner, type StatusBannerProps } from "./status-banner"

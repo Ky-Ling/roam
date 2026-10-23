@@ -58,6 +58,8 @@ Each tool has one job. Ask before moving a responsibility to a different tool.
 
 `npx expo lint` enforces rules 1–4 and 6; rule 5 is checked in review.
 
+No semicolons, including TypeScript type members (`@stylistic/semi` + `member-delimiter-style`; one-line type literals use commas). `npx expo lint --fix` removes them. `expo lint` skips root config files, so run `npx eslint --fix <file>` on those.
+
 1. **Blank line before `return`** whenever a function has statements before it.
 2. **Arrow components.** One with only JSX uses an implicit return: `export const Tag = (…) => (<View>…</View>);`. Route files define a `const` and `export default` it.
 3. **Page orchestrator.** State, effects, refs, and handlers with logic live in a colocated `use-<name>.ts` hook (no JSX, returns one flat object). The component calls it once (`const vm = useX()`), then renders JSX only. A screen's `index.tsx` calls one orchestrator hook and passes plain props to presentational children. Trivial prop lookups (`tones[tone]`) may stay in the component. `.tsx` files can't import `useState`/`useEffect`/`useRef`/`useReducer`/`useLayoutEffect`.

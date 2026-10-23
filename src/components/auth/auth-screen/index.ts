@@ -1,1 +1,1 @@
-export { AuthScreen } from "./auth-screen";
+export { AuthScreen } from "./auth-screen"

@@ -1,18 +1,18 @@
-import { Pressable, View } from "react-native";
+import { Pressable, View } from "react-native"
 
-import { cx } from "@/lib/utils";
-import { colors } from "@/theme";
+import { cx } from "@/lib/utils"
+import { colors } from "@/theme"
 
-import { Icon, type IconName } from "../icon";
-import { Text } from "../text";
+import { Icon, type IconName } from "../icon"
+import { Text } from "../text"
 
 export type PolicyCardProps = {
-  icon: IconName;
-  title: string;
-  description: string;
-  onPress?: () => void;
-  className?: string;
-};
+  icon: IconName
+  title: string
+  description: string
+  onPress?: () => void
+  className?: string
+}
 
 export const PolicyCard = ({ icon, title, description, onPress, className }: PolicyCardProps) => (
   <Pressable
@@ -36,4 +36,4 @@ export const PolicyCard = ({ icon, title, description, onPress, className }: Pol
     </View>
     <Icon name="chevronRight" color={colors.indigo} />
   </Pressable>
-);
+)

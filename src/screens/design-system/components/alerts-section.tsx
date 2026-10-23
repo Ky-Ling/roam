@@ -1,14 +1,14 @@
-import { Button } from "@/components/ui/button";
-import { StatusBanner } from "@/components/ui/status-banner";
+import { Button } from "@/components/ui/button"
+import { StatusBanner } from "@/components/ui/status-banner"
 
-import type { BannerTone } from "../constants";
-import { SectionCard } from "./section-card";
+import type { BannerTone } from "../constants"
+import { SectionCard } from "./section-card"
 
 type AlertsSectionProps = {
-  banners: Record<BannerTone, boolean>;
-  onDismiss: (tone: BannerTone) => void;
-  onShowAll: () => void;
-};
+  banners: Record<BannerTone, boolean>
+  onDismiss: (tone: BannerTone) => void
+  onShowAll: () => void
+}
 
 export const AlertsSection = ({ banners, onDismiss, onShowAll }: AlertsSectionProps) => (
   <SectionCard title="14. Status / Alerts">
@@ -26,4 +26,4 @@ export const AlertsSection = ({ banners, onDismiss, onShowAll }: AlertsSectionPr
       <Button title="Show banners" variant="secondary" size="sm" onPress={onShowAll} />
     )}
   </SectionCard>
-);
+)

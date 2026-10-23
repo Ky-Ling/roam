@@ -1,24 +1,24 @@
-import { View } from "react-native";
+import { View } from "react-native"
 
-import { cx } from "@/lib/utils";
+import { cx } from "@/lib/utils"
 
-import { Text } from "../text";
-import { StepButton } from "./step-button";
-import { useStepper } from "./use-stepper";
+import { Text } from "../text"
+import { StepButton } from "./step-button"
+import { useStepper } from "./use-stepper"
 
 export type StepperProps = {
-  value: number;
-  onChange: (value: number) => void;
-  min?: number;
+  value: number
+  onChange: (value: number) => void
+  min?: number
   /** No upper bound when omitted. */
-  max?: number;
+  max?: number
   /** Names the quantity for screen readers, e.g. "Guests". */
-  accessibilityLabel?: string;
-  className?: string;
-};
+  accessibilityLabel?: string
+  className?: string
+}
 
 export const Stepper = ({ value, onChange, min = 0, max, accessibilityLabel, className }: StepperProps) => {
-  const vm = useStepper({ value, onChange, min, max });
+  const vm = useStepper({ value, onChange, min, max })
 
   return (
     <View
@@ -38,5 +38,5 @@ export const Stepper = ({ value, onChange, min = 0, max, accessibilityLabel, cla
       </Text>
       <StepButton icon="plus" label="Increase" disabled={!vm.canIncrease} onPress={vm.increment} />
     </View>
-  );
-};
+  )
+}

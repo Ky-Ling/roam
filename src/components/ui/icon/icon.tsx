@@ -42,10 +42,10 @@ import {
   Wifi,
   X,
   type LucideIcon,
-} from "lucide-react-native";
+} from "lucide-react-native"
 
-import { isString } from "@/lib/utils";
-import { colors } from "@/theme";
+import { isString } from "@/lib/utils"
+import { colors } from "@/theme"
 
 // The app's only icon set. Screens pick icons by name from here, never from lucide directly.
 const icons = {
@@ -91,22 +91,22 @@ const icons = {
   fireplace: Flame,
   oceanView: Sunset,
   wifi: Wifi,
-} satisfies Record<string, LucideIcon>;
+} satisfies Record<string, LucideIcon>
 
-export type IconName = keyof typeof icons;
+export type IconName = keyof typeof icons
 
 export type IconProps = {
-  name: IconName;
-  size?: number;
-  color?: string;
+  name: IconName
+  size?: number
+  color?: string
   /** Fills the glyph (active tab, selected category, rating star). Defaults to the stroke color. */
-  filled?: boolean | string;
-  strokeWidth?: number;
-};
+  filled?: boolean | string
+  strokeWidth?: number
+}
 
 export const Icon = ({ name, size = 24, color = colors.ink, filled, strokeWidth = 2 }: IconProps) => {
-  const Glyph = icons[name];
-  const fill = isString(filled) ? filled : filled ? color : "none";
+  const Glyph = icons[name]
+  const fill = isString(filled) ? filled : filled ? color : "none"
 
-  return <Glyph size={size} color={color} fill={fill} strokeWidth={strokeWidth} />;
-};
+  return <Glyph size={size} color={color} fill={fill} strokeWidth={strokeWidth} />
+}

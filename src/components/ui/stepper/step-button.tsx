@@ -1,16 +1,16 @@
-import { Pressable } from "react-native";
+import { Pressable } from "react-native"
 
-import { cx } from "@/lib/utils";
-import { colors } from "@/theme";
+import { cx } from "@/lib/utils"
+import { colors } from "@/theme"
 
-import { Icon } from "../icon";
+import { Icon } from "../icon"
 
 type StepButtonProps = {
-  icon: "minus" | "plus";
-  label: string;
-  disabled: boolean;
-  onPress: () => void;
-};
+  icon: "minus" | "plus"
+  label: string
+  disabled: boolean
+  onPress: () => void
+}
 
 export const StepButton = ({ icon, label, disabled, onPress }: StepButtonProps) => (
   <Pressable
@@ -23,4 +23,4 @@ export const StepButton = ({ icon, label, disabled, onPress }: StepButtonProps) 
   >
     <Icon name={icon} size={20} color={colors.ink} />
   </Pressable>
-);
+)

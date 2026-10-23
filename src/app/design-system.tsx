@@ -1,8 +1,8 @@
-import { Redirect } from "expo-router";
+import { Redirect } from "expo-router"
 
-import { DesignSystemScreen } from "@/screens/design-system";
+import { DesignSystemScreen } from "@/screens/design-system"
 
 // Dev-only route: production builds send it home.
-const DesignSystemRoute = () => (__DEV__ ? <DesignSystemScreen /> : <Redirect href="/" />);
+const DesignSystemRoute = () => (__DEV__ ? <DesignSystemScreen /> : <Redirect href="/" />)
 
-export default DesignSystemRoute;
+export default DesignSystemRoute

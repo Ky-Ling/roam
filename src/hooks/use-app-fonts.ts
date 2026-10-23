@@ -1,10 +1,10 @@
-import { useFonts } from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
+import { useFonts } from "expo-font"
+import * as SplashScreen from "expo-splash-screen"
 
-import { isNotNil } from "@/lib/utils";
+import { isNotNil } from "@/lib/utils"
 
 // AppNavigator hides it once fonts and the Clerk session are both ready
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync()
 
 /** Loads Plus Jakarta Sans. Ready once the fonts load or fail (the system font is the fallback). */
 export const useAppFonts = () => {
@@ -14,7 +14,7 @@ export const useAppFonts = () => {
     "PlusJakartaSans-Medium": require("@/assets/fonts/PlusJakartaSans-Medium.ttf"),
     "PlusJakartaSans-SemiBold": require("@/assets/fonts/PlusJakartaSans-SemiBold.ttf"),
     "PlusJakartaSans-Bold": require("@/assets/fonts/PlusJakartaSans-Bold.ttf"),
-  });
+  })
 
-  return loaded || isNotNil(error);
-};
+  return loaded || isNotNil(error)
+}

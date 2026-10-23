@@ -1,1 +1,1 @@
-export { AppleLogo } from "./apple-logo";
+export { AppleLogo } from "./apple-logo"

@@ -1,14 +1,14 @@
-import { View } from "react-native";
+import { View } from "react-native"
 
-import { Text } from "@/components/ui/text";
-import { cx } from "@/lib/utils";
+import { Text } from "@/components/ui/text"
+import { cx } from "@/lib/utils"
 
 type CodeBoxProps = {
-  digit?: string;
+  digit?: string
   /** The box the next digit goes into, while the input is focused. */
-  active: boolean;
-  error: boolean;
-};
+  active: boolean
+  error: boolean
+}
 
 // Same resting and focus treatment as TextField.
 export const CodeBox = ({ digit, active, error }: CodeBoxProps) => (
@@ -21,4 +21,4 @@ export const CodeBox = ({ digit, active, error }: CodeBoxProps) => (
   >
     <Text variant="title">{digit}</Text>
   </View>
-);
+)

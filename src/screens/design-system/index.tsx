@@ -1,4 +1,4 @@
-import { ScrollView } from "react-native";
+import { ScrollView } from "react-native"
 
 import {
   AlertsSection,
@@ -16,12 +16,12 @@ import {
   TabBarSection,
   TogglesSection,
   TypographySection,
-} from "./components";
-import { useDesignSystem } from "./use-design-system";
+} from "./components"
+import { useDesignSystem } from "./use-design-system"
 
 /** Gallery of the design sheet's 15 sections, for comparing against the design. */
 export const DesignSystemScreen = () => {
-  const vm = useDesignSystem();
+  const vm = useDesignSystem()
 
   return (
     <ScrollView className="flex-1 bg-surface-muted" contentContainerClassName="gap-4 p-5 pb-12">
@@ -51,5 +51,5 @@ export const DesignSystemScreen = () => {
       <AlertsSection banners={vm.banners} onDismiss={vm.dismissBanner} onShowAll={vm.showBanners} />
       <BadgesSection />
     </ScrollView>
-  );
-};
+  )
+}

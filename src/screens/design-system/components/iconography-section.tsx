@@ -1,10 +1,10 @@
-import { View } from "react-native";
+import { View } from "react-native"
 
-import { Icon, type IconName } from "@/components/ui/icon";
+import { Icon, type IconName } from "@/components/ui/icon"
 
-import { SectionCard } from "./section-card";
+import { SectionCard } from "./section-card"
 
-const sheetIcons: IconName[] = ["home", "search", "heart", "calendar", "user", "settings", "pin", "filters"];
+const sheetIcons: IconName[] = ["home", "search", "heart", "calendar", "user", "settings", "pin", "filters"]
 
 export const IconographySection = () => (
   <SectionCard title="11. Iconography">
@@ -16,4 +16,4 @@ export const IconographySection = () => (
       ))}
     </View>
   </SectionCard>
-);
+)

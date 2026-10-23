@@ -1,35 +1,35 @@
-import { Pressable, StyleSheet, View } from "react-native";
-import Animated from "react-native-reanimated";
+import { Pressable, StyleSheet, View } from "react-native"
+import Animated from "react-native-reanimated"
 
-import { CSS_EASE_OUT, DURATION } from "@/constants/motion";
-import { cx } from "@/lib/utils";
-import { colors } from "@/theme";
+import { CSS_EASE_OUT, DURATION } from "@/constants/motion"
+import { cx } from "@/lib/utils"
+import { colors } from "@/theme"
 
-import { Icon, type IconName } from "../icon";
-import { Text } from "../text";
+import { Icon, type IconName } from "../icon"
+import { Text } from "../text"
 
 const tones = {
   /** Filter chips (Cabins, Under $300, ...). */
   lavender: { box: "h-12 px-6", selected: colors.lavender },
   /** Category chips with an icon (All Stays, Cabins, Beach, ...). */
   primary: { box: "h-10 px-4 gap-2", selected: colors.primary },
-} as const;
+} as const
 
 /** lg is the home screen's category row: same chip, taller. */
-const largeBox = "h-12 px-4 gap-2";
+const largeBox = "h-12 px-4 gap-2"
 
 export type ChipProps = {
-  label: string;
-  tone?: keyof typeof tones;
-  icon?: IconName;
-  size?: "md" | "lg";
-  selected?: boolean;
-  onPress?: () => void;
-  className?: string;
-};
+  label: string
+  tone?: keyof typeof tones
+  icon?: IconName
+  size?: "md" | "lg"
+  selected?: boolean
+  onPress?: () => void
+  className?: string
+}
 
 export const Chip = ({ label, tone = "lavender", icon, size = "md", selected, onPress, className }: ChipProps) => {
-  const t = tones[tone];
+  const t = tones[tone]
 
   return (
     <Pressable
@@ -53,8 +53,8 @@ export const Chip = ({ label, tone = "lavender", icon, size = "md", selected, on
         )}
       </View>
     </Pressable>
-  );
-};
+  )
+}
 
 // Plain object, not StyleSheet.create: RN's own style types don't know Reanimated's easing objects
 const fill = {
@@ -62,4 +62,4 @@ const fill = {
   transitionProperty: "backgroundColor",
   transitionDuration: DURATION.state,
   transitionTimingFunction: CSS_EASE_OUT,
-} as const;
+} as const

@@ -1,5 +1,5 @@
-import { TripsScreen } from "@/screens/trips";
+import { TripsScreen } from "@/screens/trips"
 
-const TripsRoute = () => <TripsScreen />;
+const TripsRoute = () => <TripsScreen />
 
-export default TripsRoute;
+export default TripsRoute

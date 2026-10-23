@@ -1,19 +1,19 @@
-import { Pressable, View } from "react-native";
+import { Pressable, View } from "react-native"
 
-import { cx } from "@/lib/utils";
-import { colors } from "@/theme";
+import { cx } from "@/lib/utils"
+import { colors } from "@/theme"
 
-import { Icon, type IconName } from "../icon";
-import { Text } from "../text";
+import { Icon, type IconName } from "../icon"
+import { Text } from "../text"
 
-export type SegmentOption<T extends string> = { value: T; label: string; icon?: IconName };
+export type SegmentOption<T extends string> = { value: T, label: string, icon?: IconName }
 
 export type SegmentedControlProps<T extends string> = {
-  options: SegmentOption<T>[];
-  value: T;
-  onChange: (value: T) => void;
-  className?: string;
-};
+  options: SegmentOption<T>[]
+  value: T
+  onChange: (value: T) => void
+  className?: string
+}
 
 export const SegmentedControl = <T extends string>({
   options,
@@ -23,7 +23,7 @@ export const SegmentedControl = <T extends string>({
 }: SegmentedControlProps<T>) => (
   <View accessibilityRole="tablist" className={cx("h-13 flex-row rounded-full bg-surface-muted p-1", className)}>
     {options.map((option) => {
-      const active = option.value === value;
+      const active = option.value === value
 
       return (
         <Pressable
@@ -41,7 +41,7 @@ export const SegmentedControl = <T extends string>({
             {option.label}
           </Text>
         </Pressable>
-      );
+      )
     })}
   </View>
-);
+)

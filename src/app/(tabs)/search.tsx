@@ -1,5 +1,5 @@
-import { SearchScreen } from "@/screens/search";
+import { SearchScreen } from "@/screens/search"
 
-const SearchRoute = () => <SearchScreen />;
+const SearchRoute = () => <SearchScreen />
 
-export default SearchRoute;
+export default SearchRoute

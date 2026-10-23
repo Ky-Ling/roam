@@ -1,13 +1,13 @@
-import { ClerkProvider } from "@clerk/expo";
-import { tokenCache } from "@clerk/expo/token-cache";
-import "../../global.css";
+import { ClerkProvider } from "@clerk/expo"
+import { tokenCache } from "@clerk/expo/token-cache"
+import "../../global.css"
 
-import { AppNavigator } from "@/components/app-navigator";
+import { AppNavigator } from "@/components/app-navigator"
 
-const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
+const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY
 
 if (!publishableKey) {
-  throw new Error("Missing EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY. Add it to .env.local and restart the dev server.");
+  throw new Error("Missing EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY. Add it to .env.local and restart the dev server.")
 }
 
 // tokenCache keeps the session in expo-secure-store, so guests stay signed in across launches
@@ -15,6 +15,6 @@ const RootLayout = () => (
   <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
     <AppNavigator />
   </ClerkProvider>
-);
+)
 
-export default RootLayout;
+export default RootLayout

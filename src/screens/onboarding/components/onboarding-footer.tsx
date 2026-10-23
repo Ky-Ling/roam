@@ -1,22 +1,22 @@
-import { View } from "react-native";
+import { View } from "react-native"
 
-import { AuthSwitchLink } from "@/components/auth/auth-switch-link";
-import { Button } from "@/components/ui/button";
-import { GoogleLogo } from "@/components/ui/google-logo";
-import { StatusBanner } from "@/components/ui/status-banner";
+import { AuthSwitchLink } from "@/components/auth/auth-switch-link"
+import { Button } from "@/components/ui/button"
+import { GoogleLogo } from "@/components/ui/google-logo"
+import { StatusBanner } from "@/components/ui/status-banner"
 
-import { ProgressBars } from "./progress-bars";
+import { ProgressBars } from "./progress-bars"
 
 export type OnboardingFooterProps = {
-  count: number;
-  activeIndex: number;
-  bottomInset: number;
-  googleLoading: boolean;
-  error?: string;
-  onGetStarted: () => void;
-  onContinueWithGoogle: () => void;
-  onSignIn: () => void;
-};
+  count: number
+  activeIndex: number
+  bottomInset: number
+  googleLoading: boolean
+  error?: string
+  onGetStarted: () => void
+  onContinueWithGoogle: () => void
+  onSignIn: () => void
+}
 
 /** Fixed over every page: progress bars, a pass-through gap for the slide text, then the buttons. */
 export const OnboardingFooter = ({
@@ -48,4 +48,4 @@ export const OnboardingFooter = ({
       </View>
     </View>
   </View>
-);
+)

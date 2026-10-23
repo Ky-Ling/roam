@@ -1,23 +1,23 @@
-import { GlassView, isLiquidGlassAvailable } from "expo-glass-effect";
-import { Pressable, StyleSheet, View } from "react-native";
+import { GlassView, isLiquidGlassAvailable } from "expo-glass-effect"
+import { Pressable, StyleSheet, View } from "react-native"
 
-import { cx } from "@/lib/utils";
-import { colors } from "@/theme";
+import { cx } from "@/lib/utils"
+import { colors } from "@/theme"
 
-import { Icon, type IconName } from "../icon";
-import { Text } from "../text";
+import { Icon, type IconName } from "../icon"
+import { Text } from "../text"
 
-export type TabItem<K extends string> = { key: K; label: string; icon: IconName };
+export type TabItem<K extends string> = { key: K, label: string, icon: IconName }
 
 export type GlassTabBarProps<K extends string> = {
-  items: TabItem<K>[];
-  activeKey: K;
-  onSelect: (key: K) => void;
+  items: TabItem<K>[]
+  activeKey: K
+  onSelect: (key: K) => void
   /** The caller adds the bottom safe-area inset. */
-  className?: string;
-};
+  className?: string
+}
 
-const liquidGlass = isLiquidGlassAvailable();
+const liquidGlass = isLiquidGlassAvailable()
 
 export const GlassTabBar = <K extends string>({ items, activeKey, onSelect, className }: GlassTabBarProps<K>) => (
   <View
@@ -30,7 +30,7 @@ export const GlassTabBar = <K extends string>({ items, activeKey, onSelect, clas
   >
     {liquidGlass && <GlassView glassEffectStyle="regular" colorScheme="light" style={StyleSheet.absoluteFill} />}
     {items.map((item) => {
-      const active = item.key === activeKey;
+      const active = item.key === activeKey
 
       return (
         <Pressable
@@ -46,7 +46,7 @@ export const GlassTabBar = <K extends string>({ items, activeKey, onSelect, clas
             <Text variant="label">{item.label}</Text>
           </View>
         </Pressable>
-      );
+      )
     })}
   </View>
-);
+)

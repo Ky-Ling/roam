@@ -1,22 +1,22 @@
-import type { RefObject } from "react";
-import { TextInput, View } from "react-native";
+import type { RefObject } from "react"
+import { TextInput, View } from "react-native"
 
-import { range } from "@/lib/utils";
+import { range } from "@/lib/utils"
 
-import { CodeBox } from "./code-box";
+import { CodeBox } from "./code-box"
 
 type CodeBoxesProps = {
-  inputRef: RefObject<TextInput | null>;
-  code: string;
-  length: number;
-  focused: boolean;
-  error: boolean;
-  editable: boolean;
-  onChangeCode: (value: string) => void;
-  onFocus: () => void;
-  onBlur: () => void;
-  onSubmit: () => void;
-};
+  inputRef: RefObject<TextInput | null>
+  code: string
+  length: number
+  focused: boolean
+  error: boolean
+  editable: boolean
+  onChangeCode: (value: string) => void
+  onFocus: () => void
+  onBlur: () => void
+  onSubmit: () => void
+}
 
 /** Six boxes drawn from one invisible input laid over them, so paste and one-time-code autofill work.
  * No maxLength: it would cut a pasted "123 456" before the hook strips the non-digits. */
@@ -48,4 +48,4 @@ export const CodeBoxes = ({ inputRef, ...props }: CodeBoxesProps) => (
       selectionColor="transparent"
     />
   </View>
-);
+)

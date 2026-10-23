@@ -1,16 +1,16 @@
-import { View } from "react-native";
+import { View } from "react-native"
 
-import { Stepper } from "@/components/ui/stepper";
-import { Toggle } from "@/components/ui/toggle";
+import { Stepper } from "@/components/ui/stepper"
+import { Toggle } from "@/components/ui/toggle"
 
-import { SectionCard } from "./section-card";
+import { SectionCard } from "./section-card"
 
 type TogglesSectionProps = {
-  instantBook: boolean;
-  onChangeInstantBook: (value: boolean) => void;
-  guests: number;
-  onChangeGuests: (value: number) => void;
-};
+  instantBook: boolean
+  onChangeInstantBook: (value: boolean) => void
+  guests: number
+  onChangeGuests: (value: number) => void
+}
 
 export const TogglesSection = ({ instantBook, onChangeInstantBook, guests, onChangeGuests }: TogglesSectionProps) => (
   <SectionCard title="13. Toggles / Steppers">
@@ -19,4 +19,4 @@ export const TogglesSection = ({ instantBook, onChangeInstantBook, guests, onCha
       <Stepper value={guests} onChange={onChangeGuests} min={1} max={16} accessibilityLabel="Guests" />
     </View>
   </SectionCard>
-);
+)

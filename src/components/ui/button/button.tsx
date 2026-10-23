@@ -1,44 +1,44 @@
-import type { ReactNode } from "react";
-import { ActivityIndicator, Pressable, View } from "react-native";
+import type { ReactNode } from "react"
+import { ActivityIndicator, Pressable, View } from "react-native"
 
-import { cx } from "@/lib/utils";
-import { colors } from "@/theme";
+import { cx } from "@/lib/utils"
+import { colors } from "@/theme"
 
-import { Icon, type IconName } from "../icon";
-import { Text, type TextVariant } from "../text";
+import { Icon, type IconName } from "../icon"
+import { Text, type TextVariant } from "../text"
 
 const variants = {
   primary: "bg-primary",
   secondary: "bg-surface border border-border",
-} as const;
+} as const
 
 const aligns = {
   center: "justify-center",
   /** Content from the left edge, so stacked buttons line their labels up (social sign-in). */
   start: "justify-start",
-} as const;
+} as const
 
 const sizes = {
   sm: "h-10 px-5",
   md: "h-14 px-6",
-} as const;
+} as const
 
 export type ButtonProps = {
-  title: string;
-  variant?: keyof typeof variants;
-  size?: keyof typeof sizes;
-  align?: keyof typeof aligns;
+  title: string
+  variant?: keyof typeof variants
+  size?: keyof typeof sizes
+  align?: keyof typeof aligns
   /** Label style. Social sign-in buttons use the smaller `caption`, as on the auth design. */
-  titleVariant?: TextVariant;
+  titleVariant?: TextVariant
   /** Leading visual, e.g. a provider logo on a secondary button. */
-  leading?: ReactNode;
+  leading?: ReactNode
   /** Trailing icon, pinned to the right edge while the title stays centered. */
-  trailingIcon?: IconName;
-  loading?: boolean;
-  disabled?: boolean;
-  onPress?: () => void;
-  className?: string;
-};
+  trailingIcon?: IconName
+  loading?: boolean
+  disabled?: boolean
+  onPress?: () => void
+  className?: string
+}
 
 export const Button = ({
   title,
@@ -53,7 +53,7 @@ export const Button = ({
   onPress,
   className,
 }: ButtonProps) => {
-  const inactive = disabled || loading;
+  const inactive = disabled || loading
 
   return (
     <Pressable
@@ -86,5 +86,5 @@ export const Button = ({
         </>
       )}
     </Pressable>
-  );
-};
+  )
+}

@@ -1,14 +1,14 @@
-import { View } from "react-native";
+import { View } from "react-native"
 
-import { GlassTabBar } from "@/components/ui/glass-tab-bar";
+import { GlassTabBar } from "@/components/ui/glass-tab-bar"
 
-import { TABS, type TabKey } from "../constants";
-import { SectionCard } from "./section-card";
+import { TABS, type TabKey } from "../constants"
+import { SectionCard } from "./section-card"
 
 type TabBarSectionProps = {
-  tab: TabKey;
-  onSelectTab: (tab: TabKey) => void;
-};
+  tab: TabKey
+  onSelectTab: (tab: TabKey) => void
+}
 
 export const TabBarSection = ({ tab, onSelectTab }: TabBarSectionProps) => (
   <SectionCard title="10. Bottom navigation (Liquid glass tab bar)">
@@ -16,4 +16,4 @@ export const TabBarSection = ({ tab, onSelectTab }: TabBarSectionProps) => (
       <GlassTabBar items={[...TABS]} activeKey={tab} onSelect={onSelectTab} />
     </View>
   </SectionCard>
-);
+)

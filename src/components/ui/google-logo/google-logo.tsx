@@ -1,4 +1,4 @@
-import { Image } from "expo-image";
+import { Image } from "expo-image"
 
 // Google's official multicolor "G" (sign-in branding asset), drawn at 24 as the guidelines' button size.
 export const GoogleLogo = () => (
@@ -8,4 +8,4 @@ export const GoogleLogo = () => (
     contentFit="contain"
     accessibilityElementsHidden
   />
-);
+)

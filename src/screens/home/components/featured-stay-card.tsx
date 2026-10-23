@@ -1,13 +1,13 @@
-import { Image } from "expo-image";
-import { StyleSheet, View } from "react-native";
+import { Image } from "expo-image"
+import { StyleSheet, View } from "react-native"
 
-import { Icon } from "@/components/ui/icon";
-import { Text } from "@/components/ui/text";
-import type { Stay } from "@/data/stays";
-import { colors } from "@/theme";
+import { Icon } from "@/components/ui/icon"
+import { Text } from "@/components/ui/text"
+import type { Stay } from "@/data/stays"
+import { colors } from "@/theme"
 
 // Darkens the photo's lower half so the white title reads on any image. One-off value, so it stays here.
-const scrim = { experimental_backgroundImage: "linear-gradient(to bottom, transparent 35%, rgba(11, 11, 26, 0.75))" };
+const scrim = { experimental_backgroundImage: "linear-gradient(to bottom, transparent 35%, rgba(11, 11, 26, 0.75))" }
 
 /** Full-width photo card. Not tappable until property details exist (plan 08). */
 export const FeaturedStayCard = ({ stay }: { stay: Stay }) => (
@@ -40,4 +40,4 @@ export const FeaturedStayCard = ({ stay }: { stay: Stay }) => (
       <Icon name="chevronRight" size={24} />
     </View>
   </View>
-);
+)

@@ -1,19 +1,19 @@
-import { View } from "react-native";
+import { View } from "react-native"
 
-import { AuthIntro } from "@/components/auth/auth-intro";
-import { AuthScreen } from "@/components/auth/auth-screen";
-import { AuthSwitchLink } from "@/components/auth/auth-switch-link";
-import { OrDivider } from "@/components/auth/or-divider";
-import { SocialButtons } from "@/components/auth/social-buttons";
-import { Button } from "@/components/ui/button";
-import { StatusBanner } from "@/components/ui/status-banner";
+import { AuthIntro } from "@/components/auth/auth-intro"
+import { AuthScreen } from "@/components/auth/auth-screen"
+import { AuthSwitchLink } from "@/components/auth/auth-switch-link"
+import { OrDivider } from "@/components/auth/or-divider"
+import { SocialButtons } from "@/components/auth/social-buttons"
+import { Button } from "@/components/ui/button"
+import { StatusBanner } from "@/components/ui/status-banner"
 
-import { SignInForm } from "./components";
-import { useSignIn } from "./use-sign-in";
+import { SignInForm } from "./components"
+import { useSignIn } from "./use-sign-in"
 
 export const SignInScreen = () => {
   // The refs come out on their own: the React Compiler treats any object holding a ref as ref-like.
-  const { refs, ...vm } = useSignIn();
+  const { refs, ...vm } = useSignIn()
 
   return (
     <AuthScreen onBack={vm.goBack}>
@@ -50,5 +50,5 @@ export const SignInScreen = () => {
         <AuthSwitchLink prompt="New to roam?" action="Create account" onPress={vm.goToSignUp} disabled={vm.busy} />
       </View>
     </AuthScreen>
-  );
-};
+  )
+}

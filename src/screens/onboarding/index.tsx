@@ -1,11 +1,11 @@
-import { FlatList, View } from "react-native";
+import { FlatList, View } from "react-native"
 
-import { OnboardingFooter, OnboardingHeader, OnboardingSlide } from "./components";
-import { useOnboarding } from "./use-onboarding";
+import { OnboardingFooter, OnboardingHeader, OnboardingSlide } from "./components"
+import { useOnboarding } from "./use-onboarding"
 
 /** First screen: a 3-slide photo carousel with fixed brand header and auth buttons. */
 export const OnboardingScreen = () => {
-  const vm = useOnboarding();
+  const vm = useOnboarding()
 
   return (
     <View className="flex-1 bg-surface">
@@ -35,5 +35,5 @@ export const OnboardingScreen = () => {
         onSignIn={vm.goToSignIn}
       />
     </View>
-  );
-};
+  )
+}

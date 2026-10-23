@@ -1,1 +1,1 @@
-export { AppTabs } from "./app-tabs";
+export { AppTabs } from "./app-tabs"

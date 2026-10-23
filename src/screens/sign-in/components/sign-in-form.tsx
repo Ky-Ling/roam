@@ -1,22 +1,22 @@
-import type { RefObject } from "react";
-import { Pressable, View, type TextInput } from "react-native";
+import type { RefObject } from "react"
+import { Pressable, View, type TextInput } from "react-native"
 
-import { Text } from "@/components/ui/text";
-import { TextField } from "@/components/ui/text-field";
+import { Text } from "@/components/ui/text"
+import { TextField } from "@/components/ui/text-field"
 
 type SignInFormProps = {
-  passwordRef: RefObject<TextInput | null>;
-  email: string;
-  password: string;
-  emailError?: string;
-  passwordError?: string;
-  onChangeEmail: (value: string) => void;
-  onChangePassword: (value: string) => void;
-  onEmailDone: () => void;
-  onSubmit: () => void;
-  onForgotPassword: () => void;
-  editable: boolean;
-};
+  passwordRef: RefObject<TextInput | null>
+  email: string
+  password: string
+  emailError?: string
+  passwordError?: string
+  onChangeEmail: (value: string) => void
+  onChangePassword: (value: string) => void
+  onEmailDone: () => void
+  onSubmit: () => void
+  onForgotPassword: () => void
+  editable: boolean
+}
 
 export const SignInForm = ({ passwordRef, ...props }: SignInFormProps) => (
   <View className="gap-3">
@@ -65,4 +65,4 @@ export const SignInForm = ({ passwordRef, ...props }: SignInFormProps) => (
       </Text>
     </Pressable>
   </View>
-);
+)

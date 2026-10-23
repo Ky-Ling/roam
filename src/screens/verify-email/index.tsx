@@ -1,21 +1,21 @@
-import { Redirect } from "expo-router";
-import { Pressable, View } from "react-native";
+import { Redirect } from "expo-router"
+import { Pressable, View } from "react-native"
 
-import { AuthIntro } from "@/components/auth/auth-intro";
-import { AuthScreen } from "@/components/auth/auth-screen";
-import { Button } from "@/components/ui/button";
-import { StatusBanner } from "@/components/ui/status-banner";
-import { Text } from "@/components/ui/text";
+import { AuthIntro } from "@/components/auth/auth-intro"
+import { AuthScreen } from "@/components/auth/auth-screen"
+import { Button } from "@/components/ui/button"
+import { StatusBanner } from "@/components/ui/status-banner"
+import { Text } from "@/components/ui/text"
 
-import { CodeBoxes } from "./components";
-import { useVerifyEmail } from "./use-verify-email";
+import { CodeBoxes } from "./components"
+import { useVerifyEmail } from "./use-verify-email"
 
 export const VerifyEmailScreen = () => {
   // The ref comes out on its own: the React Compiler treats any object holding a ref as ref-like.
-  const { inputRef, ...vm } = useVerifyEmail();
+  const { inputRef, ...vm } = useVerifyEmail()
 
   // Opened with no sign-up or new-device sign-in waiting for a code (deep link or reload): start over.
-  if (!vm.email) return <Redirect href="/sign-up" />;
+  if (!vm.email) return <Redirect href="/sign-up" />
 
   return (
     <AuthScreen onBack={vm.goBack}>
@@ -73,5 +73,5 @@ export const VerifyEmailScreen = () => {
         )}
       </View>
     </AuthScreen>
-  );
-};
+  )
+}

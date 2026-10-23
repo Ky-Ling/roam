@@ -1,16 +1,16 @@
-import { Pressable } from "react-native";
+import { Pressable } from "react-native"
 
-import { cx } from "@/lib/utils";
+import { cx } from "@/lib/utils"
 
-import { Icon, type IconName } from "../icon";
-import { Text } from "../text";
+import { Icon, type IconName } from "../icon"
+import { Text } from "../text"
 
 export type ListRowProps = {
-  icon: IconName;
-  label: string;
-  onPress?: () => void;
-  className?: string;
-};
+  icon: IconName
+  label: string
+  onPress?: () => void
+  className?: string
+}
 
 export const ListRow = ({ icon, label, onPress, className }: ListRowProps) => (
   <Pressable
@@ -24,4 +24,4 @@ export const ListRow = ({ icon, label, onPress, className }: ListRowProps) => (
     </Text>
     <Icon name="chevronRight" size={20} />
   </Pressable>
-);
+)

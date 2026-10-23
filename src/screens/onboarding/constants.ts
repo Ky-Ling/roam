@@ -26,6 +26,6 @@ export const SLIDES = [
     image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=2400&q=85&auto=format",
     focus: "center",
   },
-] as const;
+] as const
 
-export type Slide = (typeof SLIDES)[number];
+export type Slide = (typeof SLIDES)[number]

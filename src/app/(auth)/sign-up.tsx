@@ -1,5 +1,5 @@
-import { SignUpScreen } from "@/screens/sign-up";
+import { SignUpScreen } from "@/screens/sign-up"
 
-const SignUpRoute = () => <SignUpScreen />;
+const SignUpRoute = () => <SignUpScreen />
 
-export default SignUpRoute;
+export default SignUpRoute

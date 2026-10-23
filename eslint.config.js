@@ -1,9 +1,10 @@
 // https://docs.expo.dev/guides/using-eslint/
-const { defineConfig } = require("eslint/config");
-const expoConfig = require("eslint-config-expo/flat");
+const stylistic = require("@stylistic/eslint-plugin")
+const { defineConfig } = require("eslint/config")
+const expoConfig = require("eslint-config-expo/flat")
 
 // Code structure rules: see "Code structure" in .claude/CLAUDE.md.
-const esToolkit = (helper) => `Use ${helper} from "@/lib/utils" (es-toolkit).`;
+const esToolkit = (helper) => `Use ${helper} from "@/lib/utils" (es-toolkit).`
 
 module.exports = defineConfig([
   expoConfig,
@@ -11,7 +12,15 @@ module.exports = defineConfig([
     ignores: ["dist/*"],
   },
   {
+    plugins: { "@stylistic": stylistic },
     rules: {
+      // No semicolons. @stylistic covers TypeScript too (type aliases, interface and type-literal members),
+      // which core `semi` can't see. A guard ";" stays only where ASI would join two lines.
+      "@stylistic/semi": ["error", "never", { beforeStatementContinuationChars: "always" }],
+      "@stylistic/member-delimiter-style": [
+        "error",
+        { multiline: { delimiter: "none" }, singleline: { delimiter: "comma", requireLast: false } },
+      ],
       // Rule 1: blank line between logic and return
       "padding-line-between-statements": ["error", { blankLine: "always", prev: "*", next: "return" }],
       // Rule 2: arrow components, implicit return when there's no logic
@@ -79,4 +88,4 @@ module.exports = defineConfig([
       "no-restricted-imports": "off",
     },
   },
-]);
+])
