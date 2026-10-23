@@ -5,11 +5,17 @@ import { cx } from "@/lib/utils";
 import { colors } from "@/theme";
 
 import { Icon, type IconName } from "../icon";
-import { Text } from "../text";
+import { Text, type TextVariant } from "../text";
 
 const variants = {
   primary: "bg-primary",
   secondary: "bg-surface border border-border",
+} as const;
+
+const aligns = {
+  center: "justify-center",
+  /** Content from the left edge, so stacked buttons line their labels up (social sign-in). */
+  start: "justify-start",
 } as const;
 
 const sizes = {
@@ -21,6 +27,9 @@ export type ButtonProps = {
   title: string;
   variant?: keyof typeof variants;
   size?: keyof typeof sizes;
+  align?: keyof typeof aligns;
+  /** Label style. Social sign-in buttons use the smaller `caption`, as on the auth design. */
+  titleVariant?: TextVariant;
   /** Leading visual, e.g. a provider logo on a secondary button. */
   leading?: ReactNode;
   /** Trailing icon, pinned to the right edge while the title stays centered. */
@@ -35,6 +44,8 @@ export const Button = ({
   title,
   variant = "primary",
   size = "md",
+  align = "center",
+  titleVariant = "button",
   leading,
   trailingIcon,
   loading,
@@ -52,7 +63,9 @@ export const Button = ({
       disabled={inactive}
       onPress={onPress}
       className={cx(
-        "flex-row items-center justify-center gap-3 rounded-full active:opacity-85",
+        "flex-row items-center gap-3 rounded-full active:opacity-85",
+        // The spinner replaces the content, so it always sits in the middle.
+        loading ? aligns.center : aligns[align],
         variants[variant],
         sizes[size],
         disabled && "opacity-40",
@@ -64,7 +77,7 @@ export const Button = ({
       ) : (
         <>
           {leading}
-          <Text variant="button">{title}</Text>
+          <Text variant={titleVariant}>{title}</Text>
           {trailingIcon && (
             <View className="absolute right-6">
               <Icon name={trailingIcon} />

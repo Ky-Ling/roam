@@ -9,6 +9,8 @@ const variants = {
   muted: "bg-surface-muted",
   /** White with a lift, for buttons sitting on photos. */
   surface: "bg-surface shadow-raised",
+  /** White with a hairline outline, for the back button on white screens. */
+  outline: "bg-surface border border-border",
 } as const;
 
 const sizes = {

@@ -15,6 +15,7 @@ export const colors = {
   surfaceMuted: "#F4F4F7",
   border: "#E5E7EB",
   glass: "rgba(255, 255, 255, 0.7)",
+  scrim: "rgba(11, 11, 26, 0.45)",
   rating: "#FCB500",
   success: "#15834B",
   successSubtle: "#E4F4EC",
