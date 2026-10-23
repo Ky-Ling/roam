@@ -28,14 +28,18 @@ export const useSignUp = () => {
 
   const submit = async () => {
     setSubmitted(true)
+
     if (!isValid) return
+
     setRequestError(undefined)
     oauth.clearOAuthError()
+
     const created = await signUp.password({
       emailAddress: normalizeEmail(email),
       password,
       ...splitFullName(name),
     })
+
     // Field errors (taken email, breached password) come back through clerkErrors.fields
     if (created.error) return
     if (signUp.missingFields.includes("protect_check")) {
@@ -43,7 +47,9 @@ export const useSignUp = () => {
 
       return
     }
+
     const sent = await signUp.verifications.sendEmailCode()
+
     if (!sent.error) router.push("/verify-email")
   }
 
@@ -53,7 +59,9 @@ export const useSignUp = () => {
     email: fieldMessage(clerkErrors.fields.emailAddress),
     password: fieldMessage(clerkErrors.fields.password),
   }
+
   const globalError = clerkErrors.global ? clerkErrorMessage(clerkErrors.global[0]) : undefined
+  
   const loading = fetchStatus === "fetching"
 
   return {

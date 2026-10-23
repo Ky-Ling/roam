@@ -32,17 +32,23 @@ export const useSignIn = () => {
 
   const submit = async () => {
     setSubmitted(true)
+
     if (!isValid) return
+
     setRequestError(undefined)
     oauth.clearOAuthError()
+
     const { error } = await signIn.password({ emailAddress: normalizeEmail(email), password })
+
     // A wrong password or unknown email comes back through clerkErrors.fields
     if (error) return
+
     if (signIn.status === "complete") {
       await signIn.finalize({ navigate })
 
       return
     }
+
     // A new device (client trust) or an email second factor: Clerk wants a code from the guest's inbox
     if (pendingCodeFlow(signIn, null)?.kind !== "sign-in") {
       setRequestError(UNSUPPORTED_SIGN_IN_MESSAGE)
@@ -50,6 +56,7 @@ export const useSignIn = () => {
       return
     }
     const sent = await signIn.mfa.sendEmailCode()
+
     if (!sent.error) router.push("/verify-email")
   }
 
@@ -59,6 +66,7 @@ export const useSignIn = () => {
     email: fieldMessage(clerkErrors.fields.identifier),
     password: fieldMessage(clerkErrors.fields.password),
   }
+  
   const globalError = clerkErrors.global ? clerkErrorMessage(clerkErrors.global[0]) : undefined
   const loading = fetchStatus === "fetching"
 
