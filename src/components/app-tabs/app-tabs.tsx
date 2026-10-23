@@ -1,6 +1,6 @@
-import { NativeTabs } from "expo-router/unstable-native-tabs";
+import { NativeTabs } from "expo-router/unstable-native-tabs"
 
-import { colors } from "@/theme";
+import { colors } from "@/theme"
 
 // The platform's own tab bar: liquid glass on iOS 26, Material on Android. Tab switches never animate.
 // iOS can't draw the design's yellow pill, so selection is ink there; Android's indicator takes the yellow.
@@ -29,4 +29,4 @@ export const AppTabs = () => (
       <NativeTabs.Trigger.Label>Profile</NativeTabs.Trigger.Label>
     </NativeTabs.Trigger>
   </NativeTabs>
-);
+)

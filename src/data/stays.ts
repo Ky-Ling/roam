@@ -1,32 +1,32 @@
 // Local stand-in for Sanity property documents until the content model is wired (plan 07).
 // Fields mirror what the schema will need, so swapping the source leaves search and screens alone.
 
-export type StayType = "cabin" | "beach" | "city" | "villa";
+export type StayType = "cabin" | "beach" | "city" | "villa"
 
-export type Amenity = "hotTub" | "pool" | "fireplace" | "oceanView" | "wifi";
+export type Amenity = "hotTub" | "pool" | "fireplace" | "oceanView" | "wifi"
 
 /** Soft intent: ranks, never filters (embeddings will take this over). */
-export type Vibe = "quiet" | "cozy" | "secluded" | "romantic" | "lively" | "modern" | "family";
+export type Vibe = "quiet" | "cozy" | "secluded" | "romantic" | "lively" | "modern" | "family"
 
 export type Stay = {
-  id: string;
-  title: string;
-  type: StayType;
-  city: string;
+  id: string
+  title: string
+  type: StayType
+  city: string
   /** Two-letter state or region code, e.g. "CA". */
-  region: string;
-  regionName: string;
-  rating: number;
-  reviewCount: number;
-  pricePerNight: number;
-  maxGuests: number;
-  petsAllowed: boolean;
-  amenities: Amenity[];
-  vibes: Vibe[];
-  imageUrl: string;
-};
+  region: string
+  regionName: string
+  rating: number
+  reviewCount: number
+  pricePerNight: number
+  maxGuests: number
+  petsAllowed: boolean
+  amenities: Amenity[]
+  vibes: Vibe[]
+  imageUrl: string
+}
 
-const photo = (id: string) => `https://images.unsplash.com/photo-${id}?w=1200&q=80&auto=format&fit=crop`;
+const photo = (id: string) => `https://images.unsplash.com/photo-${id}?w=1200&q=80&auto=format&fit=crop`
 
 export const STAYS: Stay[] = [
   {
@@ -285,4 +285,4 @@ export const STAYS: Stay[] = [
     vibes: ["modern", "family"],
     imageUrl: photo("1560448204-e02f11c3d0e2"),
   },
-];
+]

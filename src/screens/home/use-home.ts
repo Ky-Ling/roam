@@ -1,36 +1,36 @@
-import { useRouter } from "expo-router";
-import { useState } from "react";
-import { useReducedMotion } from "react-native-reanimated";
+import { useRouter } from "expo-router"
+import { useState } from "react"
+import { useReducedMotion } from "react-native-reanimated"
 
-import { STAYS } from "@/data/stays";
-import { useSession } from "@/hooks/use-session";
-import { orderBy } from "@/lib/utils";
+import { STAYS } from "@/data/stays"
+import { useSession } from "@/hooks/use-session"
+import { orderBy } from "@/lib/utils"
 
-import { SEARCH_EXAMPLE, type Category } from "./constants";
-import { greetingName } from "./utils";
+import { SEARCH_EXAMPLE, type Category } from "./constants"
+import { greetingName } from "./utils"
 
 /** Orchestrator for home: the guest, the search sentence, and the category's featured stays. */
 export const useHome = () => {
-  const router = useRouter();
-  const { user } = useSession();
-  const reducedMotion = useReducedMotion();
-  const [query, setQuery] = useState("");
-  const [category, setCategory] = useState<Category>("all");
+  const router = useRouter()
+  const { user } = useSession()
+  const reducedMotion = useReducedMotion()
+  const [query, setQuery] = useState("")
+  const [category, setCategory] = useState<Category>("all")
 
-  const name = greetingName(user);
+  const name = greetingName(user)
   
   const featured = orderBy(
     category === "all" ? STAYS : STAYS.filter((s) => s.type === category),
     ["rating", "reviewCount"],
     ["desc", "desc"],
-  );
+  )
 
   const submitSearch = () => {
     // An empty submit searches the example the bar is showing
-    const q = query.trim() || SEARCH_EXAMPLE;
-    router.navigate({ pathname: "/search", params: { q } });
-    setQuery("");
-  };
+    const q = query.trim() || SEARCH_EXAMPLE
+    router.navigate({ pathname: "/search", params: { q } })
+    setQuery("")
+  }
 
   return {
     name,
@@ -44,5 +44,5 @@ export const useHome = () => {
     setCategory,
     featured,
     reducedMotion,
-  };
-};
+  }
+}

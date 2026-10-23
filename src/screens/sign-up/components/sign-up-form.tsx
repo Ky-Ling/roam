@@ -1,25 +1,25 @@
-import type { RefObject } from "react";
-import { View, type TextInput } from "react-native";
+import type { RefObject } from "react"
+import { View, type TextInput } from "react-native"
 
-import { TextField } from "@/components/ui/text-field";
+import { TextField } from "@/components/ui/text-field"
 
 type SignUpFormProps = {
-  emailRef: RefObject<TextInput | null>;
-  passwordRef: RefObject<TextInput | null>;
-  name: string;
-  email: string;
-  password: string;
-  nameError?: string;
-  emailError?: string;
-  passwordError?: string;
-  onChangeName: (value: string) => void;
-  onChangeEmail: (value: string) => void;
-  onChangePassword: (value: string) => void;
-  onNameDone: () => void;
-  onEmailDone: () => void;
-  onSubmit: () => void;
-  editable: boolean;
-};
+  emailRef: RefObject<TextInput | null>
+  passwordRef: RefObject<TextInput | null>
+  name: string
+  email: string
+  password: string
+  nameError?: string
+  emailError?: string
+  passwordError?: string
+  onChangeName: (value: string) => void
+  onChangeEmail: (value: string) => void
+  onChangePassword: (value: string) => void
+  onNameDone: () => void
+  onEmailDone: () => void
+  onSubmit: () => void
+  editable: boolean
+}
 
 export const SignUpForm = ({ emailRef, passwordRef, ...props }: SignUpFormProps) => (
   <View className="gap-3">
@@ -74,4 +74,4 @@ export const SignUpForm = ({ emailRef, passwordRef, ...props }: SignUpFormProps)
       onSubmitEditing={props.onSubmit}
     />
   </View>
-);
+)

@@ -1,1 +1,1 @@
-export { ListingCard, type ListingCardProps } from "./listing-card";
+export { ListingCard, type ListingCardProps } from "./listing-card"

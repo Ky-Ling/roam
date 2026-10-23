@@ -1,9 +1,9 @@
-import { Pressable, View } from "react-native";
+import { Pressable, View } from "react-native"
 
-import { Icon } from "@/components/ui/icon";
-import { Text } from "@/components/ui/text";
+import { Icon } from "@/components/ui/icon"
+import { Text } from "@/components/ui/text"
 
-type ResultsBarProps = { countLabel: string; sortLabel: string; onOpenSort: () => void };
+type ResultsBarProps = { countLabel: string, sortLabel: string, onOpenSort: () => void }
 
 export const ResultsBar = ({ countLabel, sortLabel, onOpenSort }: ResultsBarProps) => (
   <View className="flex-row items-center justify-between">
@@ -21,4 +21,4 @@ export const ResultsBar = ({ countLabel, sortLabel, onOpenSort }: ResultsBarProp
       <Icon name="chevronDown" size={18} />
     </Pressable>
   </View>
-);
+)

@@ -1,12 +1,12 @@
-import type { ReactNode } from "react";
-import { View } from "react-native";
+import type { ReactNode } from "react"
+import { View } from "react-native"
 
-import { Text } from "@/components/ui/text";
+import { Text } from "@/components/ui/text"
 
 type SectionCardProps = {
-  title: string;
-  children: ReactNode;
-};
+  title: string
+  children: ReactNode
+}
 
 export const SectionCard = ({ title, children }: SectionCardProps) => (
   <View className="gap-4 rounded-xl bg-surface p-4 corner-squircle">
@@ -15,4 +15,4 @@ export const SectionCard = ({ title, children }: SectionCardProps) => (
     </Text>
     {children}
   </View>
-);
+)

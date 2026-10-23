@@ -1,8 +1,8 @@
-import { View } from "react-native";
+import { View } from "react-native"
 
-import { Icon } from "@/components/ui/icon";
-import { Text } from "@/components/ui/text";
-import { colors } from "@/theme";
+import { Icon } from "@/components/ui/icon"
+import { Text } from "@/components/ui/text"
+import { colors } from "@/theme"
 
 // PLACEHOLDER: trips arrive in a later plan.
 export const TripsScreen = () => (
@@ -13,4 +13,4 @@ export const TripsScreen = () => (
       Your upcoming and past stays will show up here.
     </Text>
   </View>
-);
+)

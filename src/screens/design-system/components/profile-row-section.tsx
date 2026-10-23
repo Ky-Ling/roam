@@ -1,7 +1,7 @@
-import { ListGroup } from "@/components/ui/list-group";
-import { ListRow } from "@/components/ui/list-row";
+import { ListGroup } from "@/components/ui/list-group"
+import { ListRow } from "@/components/ui/list-row"
 
-import { SectionCard } from "./section-card";
+import { SectionCard } from "./section-card"
 
 export const ProfileRowSection = () => (
   <SectionCard title="09. Profile row">
@@ -11,4 +11,4 @@ export const ProfileRowSection = () => (
       <ListRow icon="trips" label="Trips" />
     </ListGroup>
   </SectionCard>
-);
+)

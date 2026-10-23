@@ -1,13 +1,13 @@
-import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
+import { Stack } from "expo-router"
+import { StatusBar } from "expo-status-bar"
 
-import { useAppNavigator } from "./use-app-navigator";
+import { useAppNavigator } from "./use-app-navigator"
 
 /** The root stack. Signed-out guests get onboarding and auth; signed-in guests get the app. */
 export const AppNavigator = () => {
-  const vm = useAppNavigator();
+  const vm = useAppNavigator()
 
-  if (!vm.ready) return null;
+  if (!vm.ready) return null
 
   return (
     <>
@@ -24,5 +24,5 @@ export const AppNavigator = () => {
         <Stack.Screen name="design-system" options={{ title: "Design system" }} />
       </Stack>
     </>
-  );
-};
+  )
+}

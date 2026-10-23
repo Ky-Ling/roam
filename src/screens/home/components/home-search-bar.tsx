@@ -1,15 +1,15 @@
-import { TextInput, View } from "react-native";
+import { TextInput, View } from "react-native"
 
-import { Icon } from "@/components/ui/icon";
-import { PressableScale } from "@/components/ui/pressable-scale";
-import { colors } from "@/theme";
+import { Icon } from "@/components/ui/icon"
+import { PressableScale } from "@/components/ui/pressable-scale"
+import { colors } from "@/theme"
 
 type HomeSearchBarProps = {
-  value: string;
-  placeholder: string;
-  onChangeText: (text: string) => void;
-  onSubmit: () => void;
-};
+  value: string
+  placeholder: string
+  onChangeText: (text: string) => void
+  onSubmit: () => void
+}
 
 export const HomeSearchBar = ({ value, placeholder, onChangeText, onSubmit }: HomeSearchBarProps) => (
   <View className="h-16 flex-row items-center gap-2.5 rounded-full bg-lavender pl-4 pr-2">
@@ -39,4 +39,4 @@ export const HomeSearchBar = ({ value, placeholder, onChangeText, onSubmit }: Ho
       <Icon name="arrowUpRight" size={24} />
     </PressableScale>
   </View>
-);
+)

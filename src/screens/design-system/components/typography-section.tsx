@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { Text } from "@/components/ui/text";
+import { Button } from "@/components/ui/button"
+import { Text } from "@/components/ui/text"
 
-import { SectionCard } from "./section-card";
+import { SectionCard } from "./section-card"
 
 export const TypographySection = () => (
   <SectionCard title="03. Typography">
@@ -22,4 +22,4 @@ export const TypographySection = () => (
       Label · tab bar
     </Text>
   </SectionCard>
-);
+)

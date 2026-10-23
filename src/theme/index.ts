@@ -1,1 +1,1 @@
-export { colors, type ColorToken } from "./colors";
+export { colors, type ColorToken } from "./colors"

@@ -1,11 +1,11 @@
-import { ListingCard } from "@/components/ui/listing-card";
+import { ListingCard } from "@/components/ui/listing-card"
 
-import { SectionCard } from "./section-card";
+import { SectionCard } from "./section-card"
 
 type ListingCardSectionProps = {
-  saved: boolean;
-  onToggleSave: () => void;
-};
+  saved: boolean
+  onToggleSave: () => void
+}
 
 export const ListingCardSection = ({ saved, onToggleSave }: ListingCardSectionProps) => (
   <SectionCard title="07. Listing card">
@@ -24,4 +24,4 @@ export const ListingCardSection = ({ saved, onToggleSave }: ListingCardSectionPr
       onToggleSave={onToggleSave}
     />
   </SectionCard>
-);
+)

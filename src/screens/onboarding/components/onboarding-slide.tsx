@@ -1,18 +1,18 @@
-import { Image } from "expo-image";
-import { StyleSheet, View } from "react-native";
+import { Image } from "expo-image"
+import { StyleSheet, View } from "react-native"
 
-import { GlassPill } from "@/components/ui/glass-pill";
-import { Text } from "@/components/ui/text";
+import { GlassPill } from "@/components/ui/glass-pill"
+import { Text } from "@/components/ui/text"
 
-import type { Slide } from "../constants";
-import { SheetCurve } from "./sheet-curve";
+import type { Slide } from "../constants"
+import { SheetCurve } from "./sheet-curve"
 
 export type OnboardingSlideProps = {
-  slide: Slide;
-  width: number;
-  height: number;
-  bottomInset: number;
-};
+  slide: Slide
+  width: number
+  height: number
+  bottomInset: number
+}
 
 /**
  * One page: photo, location pill, and the sheet with its text. The spacers above and below
@@ -49,4 +49,4 @@ export const OnboardingSlide = ({ slide, width, height, bottomInset }: Onboardin
       </View>
     </View>
   </View>
-);
+)

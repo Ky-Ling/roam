@@ -1,15 +1,15 @@
-import { ScrollView } from "react-native";
-import Animated from "react-native-reanimated";
+import { ScrollView } from "react-native"
+import Animated from "react-native-reanimated"
 
-import { staggeredEntrance } from "@/lib/motion";
+import { staggeredEntrance } from "@/lib/motion"
 
-import { CategoryChips, FeaturedStays, HomeHeader, HomeHero, HomeSearchBar } from "./components";
-import { SEARCH_EXAMPLE } from "./constants";
-import { useHome } from "./use-home";
+import { CategoryChips, FeaturedStays, HomeHeader, HomeHero, HomeSearchBar } from "./components"
+import { SEARCH_EXAMPLE } from "./constants"
+import { useHome } from "./use-home"
 
 // The ScrollView is the screen's first child, so native tabs inset it for the status and tab bars.
 export const HomeScreen = () => {
-  const vm = useHome();
+  const vm = useHome()
 
   return (
     <ScrollView
@@ -41,5 +41,5 @@ export const HomeScreen = () => {
         <FeaturedStays stays={vm.featured} />
       </Animated.View>
     </ScrollView>
-  );
-};
+  )
+}

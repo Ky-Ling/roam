@@ -1,10 +1,10 @@
-import { Image } from "expo-image";
-import { View } from "react-native";
+import { Image } from "expo-image"
+import { View } from "react-native"
 
-import { Text } from "@/components/ui/text";
-import { Wordmark } from "@/components/ui/wordmark";
+import { Text } from "@/components/ui/text"
+import { Wordmark } from "@/components/ui/wordmark"
 
-type HomeHeaderProps = { avatarUrl?: string; initial: string };
+type HomeHeaderProps = { avatarUrl?: string, initial: string }
 
 export const HomeHeader = ({ avatarUrl, initial }: HomeHeaderProps) => (
   <View className="flex-row items-center justify-between">
@@ -21,4 +21,4 @@ export const HomeHeader = ({ avatarUrl, initial }: HomeHeaderProps) => (
       )}
     </View>
   </View>
-);
+)

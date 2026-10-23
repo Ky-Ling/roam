@@ -1,26 +1,26 @@
-import { View } from "react-native";
+import { View } from "react-native"
 
-import { Chip } from "@/components/ui/chip";
-import type { IconName } from "@/components/ui/icon";
+import { Chip } from "@/components/ui/chip"
+import type { IconName } from "@/components/ui/icon"
 
-import { SectionCard } from "./section-card";
+import { SectionCard } from "./section-card"
 
-const filters = ["Cabins", "Under $300", "Pet Friendly", "Quiet"] as const;
+const filters = ["Cabins", "Under $300", "Pet Friendly", "Quiet"] as const
 
-const categories: { label: string; icon: IconName }[] = [
+const categories: { label: string, icon: IconName }[] = [
   { label: "All Stays", icon: "home" },
   { label: "Cabins", icon: "cabins" },
   { label: "Beach", icon: "beach" },
   { label: "City", icon: "city" },
   { label: "Villas", icon: "villas" },
-];
+]
 
 type FilterChipsSectionProps = {
-  filter: string;
-  onSelectFilter: (filter: string) => void;
-  category: string;
-  onSelectCategory: (category: string) => void;
-};
+  filter: string
+  onSelectFilter: (filter: string) => void
+  category: string
+  onSelectCategory: (category: string) => void
+}
 
 export const FilterChipsSection = ({ filter, onSelectFilter, category, onSelectCategory }: FilterChipsSectionProps) => (
   <SectionCard title="06. Filter chips">
@@ -42,4 +42,4 @@ export const FilterChipsSection = ({ filter, onSelectFilter, category, onSelectC
       ))}
     </View>
   </SectionCard>
-);
+)

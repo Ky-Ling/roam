@@ -1,20 +1,20 @@
-import type { ReactNode } from "react";
-import { Pressable, View, type PressableProps } from "react-native";
-import Animated from "react-native-reanimated";
+import type { ReactNode } from "react"
+import { Pressable, View, type PressableProps } from "react-native"
+import Animated from "react-native-reanimated"
 
-import { CSS_EASE_OUT, DURATION } from "@/constants/motion";
+import { CSS_EASE_OUT, DURATION } from "@/constants/motion"
 
-import { usePressableScale } from "./use-pressable-scale";
+import { usePressableScale } from "./use-pressable-scale"
 
 export type PressableScaleProps = Omit<PressableProps, "children" | "onPressIn" | "onPressOut"> & {
-  children: ReactNode;
+  children: ReactNode
   /** Styles the content box, which is what scales. */
-  className?: string;
-};
+  className?: string
+}
 
 /** Press feedback for button-like surfaces: shrinks to 0.97 on press-in, back on release. */
 export const PressableScale = ({ children, className, ...props }: PressableScaleProps) => {
-  const vm = usePressableScale();
+  const vm = usePressableScale()
 
   return (
     <Pressable pressRetentionOffset={16} {...props} onPressIn={vm.onPressIn} onPressOut={vm.onPressOut}>
@@ -23,8 +23,8 @@ export const PressableScale = ({ children, className, ...props }: PressableScale
         <View className={className}>{children}</View>
       </Animated.View>
     </Pressable>
-  );
-};
+  )
+}
 
 // Plain objects, not StyleSheet.create: RN's own style types don't know Reanimated's easing objects
 const styles = {
@@ -37,4 +37,4 @@ const styles = {
   },
   pressed: { transform: [{ scale: 0.97 }] },
   dimmed: { opacity: 0.85 },
-};
+}

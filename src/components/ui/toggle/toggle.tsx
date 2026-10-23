@@ -1,6 +1,6 @@
-import { Platform, Switch, type SwitchProps } from "react-native";
+import { Platform, Switch, type SwitchProps } from "react-native"
 
-import { colors } from "@/theme";
+import { colors } from "@/theme"
 
 /** The platform switch in Roam's colors. Structure and behavior stay native. */
 export const Toggle = (props: Omit<SwitchProps, "trackColor" | "thumbColor" | "ios_backgroundColor">) => (
@@ -12,4 +12,4 @@ export const Toggle = (props: Omit<SwitchProps, "trackColor" | "thumbColor" | "i
     {...(Platform.OS === "web" ? ({ activeThumbColor: colors.white } as object) : null)}
     {...props}
   />
-);
+)

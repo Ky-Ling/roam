@@ -1,5 +1,5 @@
-import { AppTabs } from "@/components/app-tabs";
+import { AppTabs } from "@/components/app-tabs"
 
-const TabsLayout = () => <AppTabs />;
+const TabsLayout = () => <AppTabs />
 
-export default TabsLayout;
+export default TabsLayout

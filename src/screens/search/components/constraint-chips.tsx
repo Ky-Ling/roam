@@ -1,11 +1,11 @@
-import { ScrollView } from "react-native";
+import { ScrollView } from "react-native"
 
-import { Chip } from "@/components/ui/chip";
+import { Chip } from "@/components/ui/chip"
 
 type ConstraintChipsProps = {
-  chips: { key: string; label: string; selected: boolean }[];
-  onToggle: (key: string) => void;
-};
+  chips: { key: string, label: string, selected: boolean }[]
+  onToggle: (key: string) => void
+}
 
 /** What the sentence was understood to ask for. Tapping one turns it off or back on. */
 export const ConstraintChips = ({ chips, onToggle }: ConstraintChipsProps) => (
@@ -19,4 +19,4 @@ export const ConstraintChips = ({ chips, onToggle }: ConstraintChipsProps) => (
       <Chip key={c.key} label={c.label} selected={c.selected} onPress={() => onToggle(c.key)} />
     ))}
   </ScrollView>
-);
+)

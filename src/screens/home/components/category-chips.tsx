@@ -1,10 +1,10 @@
-import { View } from "react-native";
+import { View } from "react-native"
 
-import { Chip } from "@/components/ui/chip";
+import { Chip } from "@/components/ui/chip"
 
-import { CATEGORIES, type Category } from "../constants";
+import { CATEGORIES, type Category } from "../constants"
 
-type CategoryChipsProps = { selected: Category; onSelect: (category: Category) => void };
+type CategoryChipsProps = { selected: Category, onSelect: (category: Category) => void }
 
 export const CategoryChips = ({ selected, onSelect }: CategoryChipsProps) => (
   <View className="flex-row flex-wrap gap-3">
@@ -20,4 +20,4 @@ export const CategoryChips = ({ selected, onSelect }: CategoryChipsProps) => (
       />
     ))}
   </View>
-);
+)

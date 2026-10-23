@@ -1,15 +1,15 @@
-import { TextInput, View } from "react-native";
+import { TextInput, View } from "react-native"
 
-import { Icon } from "@/components/ui/icon";
-import { IconButton } from "@/components/ui/icon-button";
-import { colors } from "@/theme";
+import { Icon } from "@/components/ui/icon"
+import { IconButton } from "@/components/ui/icon-button"
+import { colors } from "@/theme"
 
 type SearchHeaderProps = {
-  value: string;
-  onChangeText: (text: string) => void;
-  onSubmit: () => void;
-  onBack: () => void;
-};
+  value: string
+  onChangeText: (text: string) => void
+  onSubmit: () => void
+  onBack: () => void
+}
 
 export const SearchHeader = ({ value, onChangeText, onSubmit, onBack }: SearchHeaderProps) => (
   <View className="flex-row items-center gap-3">
@@ -37,4 +37,4 @@ export const SearchHeader = ({ value, onChangeText, onSubmit, onBack }: SearchHe
       </View>
     </View>
   </View>
-);
+)

@@ -1,24 +1,24 @@
-import type { ReactNode, Ref } from "react";
-import { Pressable, TextInput, View, type TextInputProps } from "react-native";
+import type { ReactNode, Ref } from "react"
+import { Pressable, TextInput, View, type TextInputProps } from "react-native"
 
-import { cx } from "@/lib/utils";
-import { colors } from "@/theme";
+import { cx } from "@/lib/utils"
+import { colors } from "@/theme"
 
-import { Icon, type IconName } from "../icon";
-import { Text } from "../text";
-import { useTextField } from "./use-text-field";
+import { Icon, type IconName } from "../icon"
+import { Text } from "../text"
+import { useTextField } from "./use-text-field"
 
 export type TextFieldProps = Omit<TextInputProps, "style" | "placeholderTextColor" | "selectionColor"> & {
-  icon?: IconName;
+  icon?: IconName
   /** Caption above the input inside the field (auth forms). The field grows to fit both lines. */
-  label?: string;
+  label?: string
   /** Message under the field. Also turns the border red. */
-  error?: string;
+  error?: string
   /** Action on the right edge, e.g. a filters button on the search field. */
-  trailing?: ReactNode;
-  ref?: Ref<TextInput>;
-  className?: string;
-};
+  trailing?: ReactNode
+  ref?: Ref<TextInput>
+  className?: string
+}
 
 export const TextField = ({
   icon,
@@ -33,7 +33,7 @@ export const TextField = ({
   ...props
 }: TextFieldProps) => {
   // The ref comes out on its own: the React Compiler treats any object holding a ref as ref-like.
-  const { inputRef, ...vm } = useTextField({ secureTextEntry, onFocus, onBlur, ref });
+  const { inputRef, ...vm } = useTextField({ secureTextEntry, onFocus, onBlur, ref })
 
   const input = (
     <TextInput
@@ -52,7 +52,7 @@ export const TextField = ({
       onBlur={vm.handleBlur}
       {...props}
     />
-  );
+  )
 
   return (
     <View className={cx("gap-1.5", className)}>
@@ -96,5 +96,5 @@ export const TextField = ({
         </Text>
       )}
     </View>
-  );
-};
+  )
+}

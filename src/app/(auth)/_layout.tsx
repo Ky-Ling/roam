@@ -1,4 +1,4 @@
-import { Stack } from "expo-router";
+import { Stack } from "expo-router"
 
 const AuthLayout = () => (
   <Stack screenOptions={{ headerShown: false }}>
@@ -6,6 +6,6 @@ const AuthLayout = () => (
     <Stack.Screen name="verify-email" />
     <Stack.Screen name="sign-in" />
   </Stack>
-);
+)
 
-export default AuthLayout;
+export default AuthLayout

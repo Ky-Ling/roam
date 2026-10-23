@@ -25,6 +25,6 @@ export const colors = {
   infoSubtle: "#E9EFFE",
   infoInk: "#2747C8",
   white: "#FFFFFF",
-} as const;
+} as const
 
-export type ColorToken = keyof typeof colors;
+export type ColorToken = keyof typeof colors

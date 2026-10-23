@@ -1,10 +1,10 @@
-import { View } from "react-native";
+import { View } from "react-native"
 
-import { Icon } from "@/components/ui/icon";
-import { PressableScale } from "@/components/ui/pressable-scale";
-import { Text } from "@/components/ui/text";
+import { Icon } from "@/components/ui/icon"
+import { PressableScale } from "@/components/ui/pressable-scale"
+import { Text } from "@/components/ui/text"
 
-type HomeHeroProps = { name: string; onOpenSearch: () => void };
+type HomeHeroProps = { name: string, onOpenSearch: () => void }
 
 export const HomeHero = ({ name, onOpenSearch }: HomeHeroProps) => (
   <View className="flex-row items-end gap-4">
@@ -25,4 +25,4 @@ export const HomeHero = ({ name, onOpenSearch }: HomeHeroProps) => (
       <Icon name="search" size={28} />
     </PressableScale>
   </View>
-);
+)

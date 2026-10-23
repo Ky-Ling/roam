@@ -1,11 +1,11 @@
-import { View } from "react-native";
+import { View } from "react-native"
 
-import { AppleLogo } from "@/components/ui/apple-logo";
-import { Button } from "@/components/ui/button";
-import { GoogleLogo } from "@/components/ui/google-logo";
-import { IconButton } from "@/components/ui/icon-button";
+import { AppleLogo } from "@/components/ui/apple-logo"
+import { Button } from "@/components/ui/button"
+import { GoogleLogo } from "@/components/ui/google-logo"
+import { IconButton } from "@/components/ui/icon-button"
 
-import { SectionCard } from "./section-card";
+import { SectionCard } from "./section-card"
 
 export const ButtonsSection = () => (
   <SectionCard title="04. Buttons">
@@ -22,4 +22,4 @@ export const ButtonsSection = () => (
       <IconButton icon="back" variant="outline" size="md" accessibilityLabel="Back" />
     </View>
   </SectionCard>
-);
+)

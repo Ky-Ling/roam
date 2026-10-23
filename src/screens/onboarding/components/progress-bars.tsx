@@ -1,8 +1,8 @@
-import { View } from "react-native";
+import { View } from "react-native"
 
-import { cx } from "@/lib/utils";
+import { cx } from "@/lib/utils"
 
-export const ProgressBars = ({ count, activeIndex }: { count: number; activeIndex: number }) => (
+export const ProgressBars = ({ count, activeIndex }: { count: number, activeIndex: number }) => (
   <View
     accessible
     accessibilityRole="progressbar"
@@ -13,4 +13,4 @@ export const ProgressBars = ({ count, activeIndex }: { count: number; activeInde
       <View key={i} className={cx("w-8 rounded-full", i === activeIndex ? "bg-lavender-strong" : "bg-border")} />
     ))}
   </View>
-);
+)

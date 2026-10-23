@@ -1,13 +1,13 @@
-import { Pressable } from "react-native";
+import { Pressable } from "react-native"
 
-import { Text } from "@/components/ui/text";
+import { Text } from "@/components/ui/text"
 
 type AuthSwitchLinkProps = {
-  prompt: string;
-  action: string;
-  onPress: () => void;
-  disabled?: boolean;
-};
+  prompt: string
+  action: string
+  onPress: () => void
+  disabled?: boolean
+}
 
 /** "Already have an account? Sign in": the footer link between sign-up and sign-in. */
 export const AuthSwitchLink = ({ prompt, action, onPress, disabled }: AuthSwitchLinkProps) => (
@@ -26,4 +26,4 @@ export const AuthSwitchLink = ({ prompt, action, onPress, disabled }: AuthSwitch
       </Text>
     </Text>
   </Pressable>
-);
+)

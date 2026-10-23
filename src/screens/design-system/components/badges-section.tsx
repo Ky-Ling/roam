@@ -1,9 +1,9 @@
-import { View } from "react-native";
+import { View } from "react-native"
 
-import { Badge } from "@/components/ui/badge";
-import { GlassPill } from "@/components/ui/glass-pill";
+import { Badge } from "@/components/ui/badge"
+import { GlassPill } from "@/components/ui/glass-pill"
 
-import { SectionCard } from "./section-card";
+import { SectionCard } from "./section-card"
 
 export const BadgesSection = () => (
   <SectionCard title="15. Tags / Badges">
@@ -18,4 +18,4 @@ export const BadgesSection = () => (
       <GlassPill label="Whistler, BC" icon="pin" tone="dark" size="sm" />
     </View>
   </SectionCard>
-);
+)

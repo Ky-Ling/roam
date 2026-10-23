@@ -1,1 +1,1 @@
-export { OrDivider } from "./or-divider";
+export { OrDivider } from "./or-divider"

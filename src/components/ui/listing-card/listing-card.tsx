@@ -1,27 +1,27 @@
-import { Image } from "expo-image";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Image } from "expo-image"
+import { Pressable, StyleSheet, View } from "react-native"
 
-import { cx } from "@/lib/utils";
-import { colors } from "@/theme";
+import { cx } from "@/lib/utils"
+import { colors } from "@/theme"
 
-import { Icon, type IconName } from "../icon";
-import { IconButton } from "../icon-button";
-import { Tag } from "../tag";
-import { Text } from "../text";
+import { Icon, type IconName } from "../icon"
+import { IconButton } from "../icon-button"
+import { Tag } from "../tag"
+import { Text } from "../text"
 
 export type ListingCardProps = {
-  title: string;
-  location: string;
-  rating: number;
-  reviewCount: number;
-  amenities: { icon: IconName; label: string }[];
-  pricePerNight: number;
-  imageUrl: string;
-  saved?: boolean;
-  onToggleSave?: () => void;
-  onPress?: () => void;
-  className?: string;
-};
+  title: string
+  location: string
+  rating: number
+  reviewCount: number
+  amenities: { icon: IconName, label: string }[]
+  pricePerNight: number
+  imageUrl: string
+  saved?: boolean
+  onToggleSave?: () => void
+  onPress?: () => void
+  className?: string
+}
 
 export const ListingCard = ({
   title,
@@ -91,4 +91,4 @@ export const ListingCard = ({
       className="absolute left-24 top-5"
     />
   </View>
-);
+)

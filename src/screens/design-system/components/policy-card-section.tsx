@@ -1,6 +1,6 @@
-import { PolicyCard } from "@/components/ui/policy-card";
+import { PolicyCard } from "@/components/ui/policy-card"
 
-import { SectionCard } from "./section-card";
+import { SectionCard } from "./section-card"
 
 export const PolicyCardSection = () => (
   <SectionCard title="08. Policy card">
@@ -11,4 +11,4 @@ export const PolicyCardSection = () => (
     />
     <PolicyCard icon="document" title="Free cancellation" description="Full refund up to 7 days before check-in." />
   </SectionCard>
-);
+)

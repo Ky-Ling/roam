@@ -1,9 +1,9 @@
-import { Pressable } from "react-native";
+import { Pressable } from "react-native"
 
-import { cx } from "@/lib/utils";
-import { colors } from "@/theme";
+import { cx } from "@/lib/utils"
+import { colors } from "@/theme"
 
-import { Icon, type IconName } from "../icon";
+import { Icon, type IconName } from "../icon"
 
 const variants = {
   muted: "bg-surface-muted",
@@ -11,26 +11,26 @@ const variants = {
   surface: "bg-surface shadow-raised",
   /** White with a hairline outline, for the back button on white screens. */
   outline: "bg-surface border border-border",
-} as const;
+} as const
 
 const sizes = {
   sm: { box: "size-9", icon: 18 },
   md: { box: "size-12", icon: 22 },
   lg: { box: "size-14", icon: 24 },
-} as const;
+} as const
 
 export type IconButtonProps = {
-  icon: IconName;
+  icon: IconName
   /** Required: there is no visible text. */
-  accessibilityLabel: string;
-  variant?: keyof typeof variants;
-  size?: keyof typeof sizes;
+  accessibilityLabel: string
+  variant?: keyof typeof variants
+  size?: keyof typeof sizes
   /** Filled glyph, e.g. a saved heart. */
-  active?: boolean;
-  disabled?: boolean;
-  onPress?: () => void;
-  className?: string;
-};
+  active?: boolean
+  disabled?: boolean
+  onPress?: () => void
+  className?: string
+}
 
 export const IconButton = ({
   icon,
@@ -59,4 +59,4 @@ export const IconButton = ({
   >
     <Icon name={icon} size={sizes[size].icon} filled={active} color={colors.ink} />
   </Pressable>
-);
+)

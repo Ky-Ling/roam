@@ -1,10 +1,10 @@
-import { Pressable, View } from "react-native";
+import { Pressable, View } from "react-native"
 
-import { cx } from "@/lib/utils";
-import { colors } from "@/theme";
+import { cx } from "@/lib/utils"
+import { colors } from "@/theme"
 
-import { Icon } from "../icon";
-import { Text } from "../text";
+import { Icon } from "../icon"
+import { Text } from "../text"
 
 const tones = {
   success: {
@@ -15,17 +15,17 @@ const tones = {
     dismiss: colors.successInk,
   },
   error: { box: "bg-danger-subtle", icon: "error", fill: colors.danger, text: "danger", dismiss: colors.danger },
-} as const;
+} as const
 
 export type StatusBannerProps = {
-  tone: keyof typeof tones;
-  message: string;
-  onDismiss?: () => void;
-  className?: string;
-};
+  tone: keyof typeof tones
+  message: string
+  onDismiss?: () => void
+  className?: string
+}
 
 export const StatusBanner = ({ tone, message, onDismiss, className }: StatusBannerProps) => {
-  const t = tones[tone];
+  const t = tones[tone]
 
   return (
     <View
@@ -49,5 +49,5 @@ export const StatusBanner = ({ tone, message, onDismiss, className }: StatusBann
         </Pressable>
       )}
     </View>
-  );
-};
+  )
+}
