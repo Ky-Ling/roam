@@ -122,6 +122,12 @@
   font-size: 16px;
 }
 
+/* type-input at caption size, for the home search bar: its example sentence fits one line at 14. */
+@utility type-input-sm {
+  font-family: var(--font-jakarta-medium);
+  font-size: 14px;
+}
+
 @utility type-caption {
   font-family: var(--font-jakarta-medium);
   font-size: 14px;

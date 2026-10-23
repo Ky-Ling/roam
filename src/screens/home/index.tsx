@@ -1,25 +1,45 @@
-import { View } from "react-native";
+import { ScrollView } from "react-native";
+import Animated from "react-native-reanimated";
 
-import { Button } from "@/components/ui/button";
-import { Text } from "@/components/ui/text";
-import { Wordmark } from "@/components/ui/wordmark";
+import { staggeredEntrance } from "@/lib/motion";
 
+import { CategoryChips, FeaturedStays, HomeHeader, HomeHero, HomeSearchBar } from "./components";
+import { SEARCH_EXAMPLE } from "./constants";
 import { useHome } from "./use-home";
 
-// PLACEHOLDER: the real home screen arrives in a later plan.
+// The ScrollView is the screen's first child, so native tabs inset it for the status and tab bars.
 export const HomeScreen = () => {
   const vm = useHome();
 
   return (
-    <View className="flex-1 gap-6 bg-surface px-6" style={{ paddingTop: vm.topInset + 8 }}>
-      <Wordmark size="sm" />
-      <View className="gap-3">
-        <Text variant="heading">You&apos;re in</Text>
-        <Text tone="secondary">
-          Signed in as {vm.displayName}. The home screen arrives in a later plan.
-        </Text>
-      </View>
-      <Button title="Sign out" variant="secondary" onPress={vm.signOut} />
-    </View>
+    <ScrollView
+      className="flex-1 bg-surface"
+      // Web's native tabs float a bar over the top of the screen instead of sitting at the bottom
+      contentContainerClassName="gap-6 px-5 pb-8 pt-2 web:pt-24"
+      contentInsetAdjustmentBehavior="automatic"
+      keyboardShouldPersistTaps="handled"
+      keyboardDismissMode="on-drag"
+    >
+      <Animated.View entering={staggeredEntrance(0, vm.reducedMotion)}>
+        <HomeHeader avatarUrl={vm.avatarUrl} initial={vm.initial} />
+      </Animated.View>
+      <Animated.View entering={staggeredEntrance(1, vm.reducedMotion)}>
+        <HomeHero name={vm.name} onOpenSearch={vm.openSearch} />
+      </Animated.View>
+      <Animated.View entering={staggeredEntrance(2, vm.reducedMotion)}>
+        <HomeSearchBar
+          value={vm.query}
+          placeholder={SEARCH_EXAMPLE}
+          onChangeText={vm.setQuery}
+          onSubmit={vm.submitSearch}
+        />
+      </Animated.View>
+      <Animated.View entering={staggeredEntrance(3, vm.reducedMotion)}>
+        <CategoryChips selected={vm.category} onSelect={vm.setCategory} />
+      </Animated.View>
+      <Animated.View entering={staggeredEntrance(4, vm.reducedMotion)}>
+        <FeaturedStays stays={vm.featured} />
+      </Animated.View>
+    </ScrollView>
   );
 };
