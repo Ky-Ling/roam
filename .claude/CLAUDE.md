@@ -47,7 +47,7 @@ Each tool has one job. Ask before moving a responsibility to a different tool.
 - **Policy knowledge:** a Sanity Context endpoint in Knowledge Base mode. Context endpoints are created in the Dashboard's Context app and read with an organization token (Context Viewer), per https://www.sanity.io/docs/ai/context-migration-guide. One endpoint serves one mode. The Context skill still describes `sanity.agentContext` Studio documents with a project token; that route is deprecated, so don't use it.
 - **Typed decisions** (which stay topics and policies answer a question): Jev, called from API routes through the AI SDK's `experimental_evaluate` with the `@ai-sdk/typesafe-ai` provider and `TYPESAFE_AI_API_KEY`. No Vercel AI Gateway. Keep `ai` and `@ai-sdk/typesafe-ai` pinned to exact versions, since the API is experimental.
 - **Answer text:** none generated. Answers show the stay's own fields and policy text word for word, with their source. No LLM runs in the app.
-- **Analytics:** PostHog, identified through Clerk.
+- **Analytics:** PostHog (`src/lib/posthog.ts`, `EXPO_PUBLIC_POSTHOG_PROJECT_TOKEN`/`_HOST`, a public client key). `usePostHogIdentity` identifies by Clerk user id only, and Sign out resets. Autocapture is off, because screen names would carry Search's `?q=`, so events are explicit `posthog?.capture` calls with no typed text. Web needs the `localStorage` `customStorage` or the SDK throws at startup. `studio/copy` sends Agent Actions runs as `$ai_generation` events (listing data only).
 
 ## Rules
 

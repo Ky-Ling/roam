@@ -4,6 +4,7 @@ import { useReducedMotion } from "react-native-reanimated"
 
 import { STAY_TYPE_META } from "@/constants/stays"
 import { useSession } from "@/hooks/use-session"
+import { posthog } from "@/lib/posthog"
 
 import { SEARCH_EXAMPLE, type Category } from "./constants"
 import { useFeaturedStays } from "./use-featured-stays"
@@ -24,6 +25,7 @@ export const useHome = () => {
   const submitSearch = () => {
     // An empty submit searches the example the bar is showing
     const q = query.trim() || SEARCH_EXAMPLE
+    posthog?.capture("search_submitted", { source: "home" })
     router.navigate({ pathname: "/search", params: { q } })
     setQuery("")
   }
@@ -37,7 +39,10 @@ export const useHome = () => {
     submitSearch,
     openSearch: () => router.navigate({ pathname: "/search", params: { q: "" } }),
     category,
-    setCategory,
+    setCategory: (nextCategory: Category) => {
+      posthog?.capture("category_selected", { category: nextCategory })
+      setCategory(nextCategory)
+    },
     featured: featured.stays,
     featuredStatus: featured.status,
     retryFeatured: featured.retry,
