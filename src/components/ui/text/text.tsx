@@ -8,6 +8,7 @@ const variants = {
   headline: "type-headline",
   heading: "type-heading",
   title: "type-title",
+  price: "type-price",
   body: "type-body",
   "body-medium": "type-body-medium",
   lead: "type-lead",

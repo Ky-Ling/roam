@@ -15,14 +15,14 @@ const tones = {
   primary: { box: "h-10 px-4 gap-2", selected: colors.primary },
 } as const
 
-/** lg is the home screen's category row: same chip, taller. */
-const largeBox = "h-12 px-4 gap-2"
+/** lg is the home screen's category row: same chip, taller. sm is the search screen's constraint row. */
+const sizedBox = { lg: "h-12 px-4 gap-2", sm: "h-9 px-4 gap-2" } as const
 
 export type ChipProps = {
   label: string
   tone?: keyof typeof tones
   icon?: IconName
-  size?: "md" | "lg"
+  size?: "sm" | "md" | "lg"
   selected?: boolean
   onPress?: () => void
   className?: string
@@ -42,7 +42,7 @@ export const Chip = ({ label, tone = "lavender", icon, size = "md", selected, on
       <Animated.View
         style={[fill, { backgroundColor: selected ? t.selected : colors.surfaceMuted }]}
       />
-      <View className={cx("flex-row items-center justify-center", size === "lg" ? largeBox : t.box)}>
+      <View className={cx("flex-row items-center justify-center", size === "md" ? t.box : sizedBox[size])}>
         {icon && <Icon name={icon} size={20} color={colors.ink} filled={selected} />}
         {tone === "lavender" ? (
           <Text variant="body-medium" className={selected ? "font-jakarta-semibold" : undefined}>

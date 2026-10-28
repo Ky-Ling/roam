@@ -29,6 +29,12 @@ export const FilterChipsSection = ({ filter, onSelectFilter, category, onSelectC
         <Chip key={f} label={f} selected={filter === f} onPress={() => onSelectFilter(f)} />
       ))}
     </View>
+    {/* sm: the search screen's constraint row */}
+    <View className="flex-row flex-wrap gap-2.5">
+      {filters.map((f) => (
+        <Chip key={f} label={f} size="sm" selected={filter === f} onPress={() => onSelectFilter(f)} />
+      ))}
+    </View>
     <View className="flex-row flex-wrap gap-2">
       {categories.map((c) => (
         <Chip

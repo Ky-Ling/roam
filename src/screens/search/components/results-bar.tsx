@@ -7,7 +7,7 @@ type ResultsBarProps = { countLabel: string, sortLabel: string, onOpenSort: () =
 
 export const ResultsBar = ({ countLabel, sortLabel, onOpenSort }: ResultsBarProps) => (
   <View className="flex-row items-center justify-between">
-    <Text variant="body-medium">{countLabel}</Text>
+    <Text variant="body">{countLabel}</Text>
     <Pressable
       accessibilityRole="button"
       accessibilityLabel={`Sort by ${sortLabel}`}
@@ -16,7 +16,10 @@ export const ResultsBar = ({ countLabel, sortLabel, onOpenSort }: ResultsBarProp
       className="flex-row items-center gap-1.5 active:opacity-85"
     >
       <Text variant="caption">
-        Sort by <Text variant="caption" className="font-jakarta-bold">{sortLabel}</Text>
+        Sort by{" "}
+        <Text variant="caption" className="font-jakarta-bold">
+          {sortLabel}
+        </Text>
       </Text>
       <Icon name="chevronDown" size={18} />
     </Pressable>

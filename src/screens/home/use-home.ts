@@ -26,7 +26,7 @@ export const useHome = () => {
     // An empty submit searches the example the bar is showing
     const q = query.trim() || SEARCH_EXAMPLE
     posthog?.capture("search_submitted", { source: "home" })
-    router.navigate({ pathname: "/search", params: { q } })
+    router.navigate({ pathname: "/search", params: { q, src: "home" } })
     setQuery("")
   }
 

@@ -13,10 +13,10 @@ export const ConstraintChips = ({ chips, onToggle }: ConstraintChipsProps) => (
     horizontal
     showsHorizontalScrollIndicator={false}
     className="-mx-5 grow-0"
-    contentContainerClassName="gap-3 px-5"
+    contentContainerClassName="gap-2.5 px-5"
   >
     {chips.map((c) => (
-      <Chip key={c.key} label={c.label} selected={c.selected} onPress={() => onToggle(c.key)} />
+      <Chip key={c.key} label={c.label} size="sm" selected={c.selected} onPress={() => onToggle(c.key)} />
     ))}
   </ScrollView>
 )
