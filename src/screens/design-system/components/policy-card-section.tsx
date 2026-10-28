@@ -9,6 +9,10 @@ export const PolicyCardSection = () => (
       title="Ask about policies"
       description="Cancellation, house rules, pets, check-in and more."
     />
-    <PolicyCard icon="document" title="Free cancellation" description="Full refund up to 7 days before check-in." />
+    <PolicyCard
+      icon="document"
+      iconBox={false}
+      title="Free cancellation" description="Full refund up to 7 days before check-in."
+    />
   </SectionCard>
 )

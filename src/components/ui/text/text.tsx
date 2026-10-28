@@ -6,6 +6,7 @@ const variants = {
   display: "type-display",
   hero: "type-hero",
   headline: "type-headline",
+  "heading-lg": "type-heading-lg",
   heading: "type-heading",
   title: "type-title",
   price: "type-price",
@@ -13,6 +14,7 @@ const variants = {
   "body-medium": "type-body-medium",
   lead: "type-lead",
   caption: "type-caption",
+  footnote: "type-footnote",
   button: "type-button",
   label: "type-label",
 } as const

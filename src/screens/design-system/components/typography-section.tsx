@@ -8,6 +8,7 @@ export const TypographySection = () => (
     <Text variant="display">Find your next stay</Text>
     <Text variant="hero">Find a stay that fits your story</Text>
     <Text variant="headline">Create your account</Text>
+    <Text variant="heading-lg">Modern Cabin with Hot Tub</Text>
     <Text variant="heading">Modern Cabin with Hot Tub</Text>
     <Text variant="title">Modern Cabin with Hot Tub</Text>
     <Text variant="price">
@@ -23,6 +24,9 @@ export const TypographySection = () => (
       Lead · intro paragraph under a hero or heading, with a tighter line rhythm than body.
     </Text>
     <Text variant="caption">Lake Arrowhead, CA</Text>
+    <Text variant="footnote" tone="secondary">
+      Footnote · Full refund up to 7 days before check-in.
+    </Text>
     <Button title="Book this stay" size="sm" className="self-start" />
     <Text variant="label" tone="secondary">
       Label · tab bar

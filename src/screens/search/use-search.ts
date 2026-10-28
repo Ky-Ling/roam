@@ -120,6 +120,7 @@ export const useSearch = () => {
     setDraft,
     submit,
     goHome: () => router.navigate("/home"),
+    openStay: (slug: string) => router.push({ pathname: "/stay/[slug]", params: { slug, src: "search" } }),
     chips,
     showChips: !isEmpty(chips),
     toggleChip,

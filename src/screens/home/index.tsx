@@ -43,6 +43,7 @@ export const HomeScreen = () => {
           status={vm.featuredStatus}
           emptyMessage={vm.emptyMessage}
           onRetry={vm.retryFeatured}
+          onOpenStay={vm.openStay}
         />
       </Animated.View>
     </ScrollView>

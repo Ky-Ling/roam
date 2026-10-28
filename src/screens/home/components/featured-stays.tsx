@@ -24,9 +24,10 @@ type FeaturedStaysProps = {
   status: FeaturedStatus
   emptyMessage: string
   onRetry: () => void
+  onOpenStay: (id: string) => void
 }
 
-export const FeaturedStays = ({ stays, status, emptyMessage, onRetry }: FeaturedStaysProps) => (
+export const FeaturedStays = ({ stays, status, emptyMessage, onRetry, onOpenStay }: FeaturedStaysProps) => (
   <View className="gap-5">
     {status === "loading" && PLACEHOLDERS.map((i) => <FeaturedStayPlaceholder key={i} />)}
     {status === "error" && <FeaturedStaysError onRetry={onRetry} />}
@@ -37,7 +38,7 @@ export const FeaturedStays = ({ stays, status, emptyMessage, onRetry }: Featured
     )}
     {stays.map((stay) => (
       <Animated.View key={stay.id} entering={entering} exiting={exiting} layout={layout}>
-        <FeaturedStayCard stay={stay} />
+        <FeaturedStayCard stay={stay} onPress={() => onOpenStay(stay.id)} />
       </Animated.View>
     ))}
   </View>

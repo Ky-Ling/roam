@@ -11,6 +11,8 @@ const variants = {
   surface: "bg-surface shadow-raised",
   /** White with a hairline outline, for the back button on white screens. */
   outline: "bg-surface border border-border",
+  /** Yellow, for the one action a row exists for (send). */
+  primary: "bg-primary",
 } as const
 
 const sizes = {

@@ -10,6 +10,7 @@ import { SectionCard } from "./section-card"
 export const ButtonsSection = () => (
   <SectionCard title="04. Buttons">
     <Button title="Book this stay" trailingIcon="arrowRight" />
+    <Button title="Book this stay" size="lg" />
     <Button title="Continue with Google" variant="secondary" leading={<GoogleLogo />} />
     <Button title="Continue with Apple" variant="secondary" leading={<AppleLogo />} />
     <Button title="Book this stay" loading />
@@ -20,6 +21,7 @@ export const ButtonsSection = () => (
       <IconButton icon="search" accessibilityLabel="Search" />
       <IconButton icon="bookmark" accessibilityLabel="Bookmark" />
       <IconButton icon="back" variant="outline" size="md" accessibilityLabel="Back" />
+      <IconButton icon="send" variant="primary" size="sm" accessibilityLabel="Send" />
     </View>
   </SectionCard>
 )
