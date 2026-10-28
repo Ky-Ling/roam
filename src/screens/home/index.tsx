@@ -38,7 +38,12 @@ export const HomeScreen = () => {
         <CategoryChips selected={vm.category} onSelect={vm.setCategory} />
       </Animated.View>
       <Animated.View entering={staggeredEntrance(4, vm.reducedMotion)}>
-        <FeaturedStays stays={vm.featured} />
+        <FeaturedStays
+          stays={vm.featured}
+          status={vm.featuredStatus}
+          emptyMessage={vm.emptyMessage}
+          onRetry={vm.retryFeatured}
+        />
       </Animated.View>
     </ScrollView>
   )

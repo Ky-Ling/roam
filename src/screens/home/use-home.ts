@@ -2,11 +2,11 @@ import { useRouter } from "expo-router"
 import { useState } from "react"
 import { useReducedMotion } from "react-native-reanimated"
 
-import { STAYS } from "@/data/stays"
+import { STAY_TYPE_META } from "@/constants/stays"
 import { useSession } from "@/hooks/use-session"
-import { orderBy } from "@/lib/utils"
 
 import { SEARCH_EXAMPLE, type Category } from "./constants"
+import { useFeaturedStays } from "./use-featured-stays"
 import { greetingName } from "./utils"
 
 /** Orchestrator for home: the guest, the search sentence, and the category's featured stays. */
@@ -17,13 +17,9 @@ export const useHome = () => {
   const [query, setQuery] = useState("")
   const [category, setCategory] = useState<Category>("all")
 
+  const featured = useFeaturedStays(category)
+
   const name = greetingName(user)
-  
-  const featured = orderBy(
-    category === "all" ? STAYS : STAYS.filter((s) => s.type === category),
-    ["rating", "reviewCount"],
-    ["desc", "desc"],
-  )
 
   const submitSearch = () => {
     // An empty submit searches the example the bar is showing
@@ -42,7 +38,10 @@ export const useHome = () => {
     openSearch: () => router.navigate({ pathname: "/search", params: { q: "" } }),
     category,
     setCategory,
-    featured,
+    featured: featured.stays,
+    featuredStatus: featured.status,
+    retryFeatured: featured.retry,
+    emptyMessage: category === "all" ? "No stays yet." : `Nothing in ${STAY_TYPE_META[category].label} yet.`,
     reducedMotion,
   }
 }
