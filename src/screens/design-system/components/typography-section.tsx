@@ -10,6 +10,12 @@ export const TypographySection = () => (
     <Text variant="headline">Create your account</Text>
     <Text variant="heading">Modern Cabin with Hot Tub</Text>
     <Text variant="title">Modern Cabin with Hot Tub</Text>
+    <Text variant="price">
+      $289{" "}
+      <Text variant="caption" tone="tertiary">
+        / night
+      </Text>
+    </Text>
     <Text variant="body" tone="secondary">
       From mountain cabins to oceanfront villas, roam helps you find unforgettable stays for every kind of trip.
     </Text>

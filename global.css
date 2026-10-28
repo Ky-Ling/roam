@@ -96,6 +96,14 @@
   letter-spacing: -0.2px;
 }
 
+/* Nightly price on search results: between title and heading. */
+@utility type-price {
+  font-family: var(--font-jakarta-bold);
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+}
+
 @utility type-body {
   font-family: var(--font-jakarta);
   font-size: 16px;

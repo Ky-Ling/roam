@@ -1,6 +1,6 @@
 import type { IconName } from "@/components/ui/icon"
 import { STAY_TYPE_META } from "@/constants/stays"
-import type { StayType } from "@/data/stays"
+import type { StayType } from "@/lib/sanity"
 
 export type Category = "all" | StayType
 

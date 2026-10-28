@@ -1,4 +1,4 @@
-import type { Amenity, StayType, Vibe } from "@/data/stays"
+import type { Amenity, StayType, Vibe } from "@/lib/sanity"
 
 /** One thing the guest's sentence was understood to ask for. Everything but vibe filters. */
 export type Constraint =
@@ -8,5 +8,3 @@ export type Constraint =
   | { kind: "pets" }
   | { kind: "place", value: string }
   | { kind: "vibe", value: Vibe }
-
-export type SortKey = "best" | "price" | "rating"

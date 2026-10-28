@@ -3,26 +3,29 @@ import { useState } from "react"
 import { ActionSheetIOS, Alert, Platform } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 
-import { STAYS } from "@/data/stays"
-import { constraintKey, constraintLabel, parseQuery, searchStays, type SortKey } from "@/lib/search"
+import type { SearchSort } from "@/lib/sanity"
+import { constraintKey, constraintKinds, constraintLabel, parseQuery, toQueryParams } from "@/lib/search"
 import { posthog } from "@/lib/posthog"
-import { isEmpty } from "@/lib/utils"
+import { isEmpty, isNil } from "@/lib/utils"
 
 import { SORT_OPTIONS } from "./constants"
-import { toListing } from "./utils"
+import { usePlaces } from "./use-places"
+import { useSearchResults } from "./use-search-results"
+import { countLabel, toResult } from "./utils"
 
 /**
- * Orchestrator for search. The submitted sentence lives in the `q` param; the field holds a draft.
- * Data is local and synchronous, so there's no loading or error state yet (Sanity brings both).
+ * Orchestrator for search. The submitted sentence lives in the `q` param (and where it came from in `src`);
+ * the field holds a draft. Code parses the sentence once Sanity's place names are in, then the hard
+ * constraints go to GROQ as params.
  */
 export const useSearch = () => {
   const router = useRouter()
   const insets = useSafeAreaInsets()
-  const { q = "" } = useLocalSearchParams<{ q?: string }>()
+  const { q = "", src = "link" } = useLocalSearchParams<{ q?: string, src?: string }>()
   const [draft, setDraft] = useState(q)
   const [lastQ, setLastQ] = useState(q)
   const [off, setOff] = useState<string[]>([])
-  const [sort, setSort] = useState<SortKey>("best")
+  const [sort, setSort] = useState<SearchSort>("best")
   const [saved, setSaved] = useState<string[]>([])
 
   // A new sentence (from home, or submitted here) resets the field and turns every chip back on
@@ -32,14 +35,22 @@ export const useSearch = () => {
     setOff([])
   }
 
-  const constraints = parseQuery(q, STAYS)
+  const placesState = usePlaces()
+  const constraints = isNil(placesState.places) ? [] : parseQuery(q, placesState.places)
   const chips = constraints.map((c) => {
     const key = constraintKey(c)
 
     return { key, label: constraintLabel(c), selected: !off.includes(key) }
   })
   const active = constraints.filter((c) => !off.includes(constraintKey(c)))
-  const results = searchStays(STAYS, active, sort).map(toListing)
+  const params = toQueryParams(active)
+  // Words but no recognized filter: every stay comes back, so the screen says so
+  const understood = isEmpty(q.trim()) || !isEmpty(constraints)
+
+  const results = useSearchResults(
+    isNil(placesState.places) ? null : { q, params, sort, kinds: constraintKinds(active), source: src, understood },
+  )
+  const status = placesState.failed ? "error" : results.status
 
   const toggleChip = (key: string) => {
     const enabled = off.includes(key)
@@ -57,7 +68,7 @@ export const useSearch = () => {
     setSaved((ids) => (ids.includes(id) ? ids.filter((i) => i !== id) : [...ids, id]))
   }
 
-  const selectSort = (nextSort: SortKey) => {
+  const selectSort = (nextSort: SearchSort) => {
     posthog?.capture("search_sort_selected", { sort: nextSort })
     setSort(nextSort)
   }
@@ -69,7 +80,12 @@ export const useSearch = () => {
 
   const submit = () => {
     posthog?.capture("search_submitted", { source: "search" })
-    router.setParams({ q: draft.trim() })
+    router.setParams({ q: draft.trim(), src: "search" })
+  }
+
+  const retry = () => {
+    if (placesState.failed) placesState.retry()
+    else results.retry()
   }
 
   const openSort = () => {
@@ -107,10 +123,13 @@ export const useSearch = () => {
     chips,
     showChips: !isEmpty(chips),
     toggleChip,
+    status,
+    retry,
+    showUnmatchedNote: !isNil(placesState.places) && !understood && status === "ready",
     hasActiveFilters: !isEmpty(active),
     clearFilters,
-    results: results.map((r) => ({ ...r, saved: saved.includes(r.id) })),
-    countLabel: `${results.length} ${results.length === 1 ? "stay" : "stays"}`,
+    results: results.stays.map((stay) => ({ ...toResult(stay, params.amenities), saved: saved.includes(stay.id) })),
+    countLabel: status === "ready" ? countLabel(results.stays.length) : "… stays",
     sortLabel: SORT_OPTIONS.find((o) => o.key === sort)?.label ?? "",
     openSort,
     toggleSave,
