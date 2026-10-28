@@ -17,8 +17,10 @@ export const sanityFetch = async <T>(query: string, params: Record<string, unkno
     ["perspective", "published"],
     ...Object.entries(params).map(([key, value]): [string, string] => [`$${key}`, JSON.stringify(value)]),
   ])
+  
   const response = await fetch(`${QUERY_URL}?${search}`, { signal })
   const body = (await response.json()) as QueryResponse<T>
+
   if (!response.ok || "error" in body) {
     throw new Error("error" in body ? body.error.description : `Sanity query failed with ${response.status}`)
   }

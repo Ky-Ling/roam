@@ -21,6 +21,8 @@ const aligns = {
 const sizes = {
   sm: "h-10 px-5",
   md: "h-14 px-6",
+  /** The booking bar's call to action. */
+  lg: "h-16 px-8",
 } as const
 
 export type ButtonProps = {
@@ -28,7 +30,7 @@ export type ButtonProps = {
   variant?: keyof typeof variants
   size?: keyof typeof sizes
   align?: keyof typeof aligns
-  /** Label style. Social sign-in buttons use the smaller `caption`, as on the auth design. */
+  /** Label style. Defaults to `button` (`title` at size lg). Social sign-in buttons use `caption`. */
   titleVariant?: TextVariant
   /** Leading visual, e.g. a provider logo on a secondary button. */
   leading?: ReactNode
@@ -45,7 +47,7 @@ export const Button = ({
   variant = "primary",
   size = "md",
   align = "center",
-  titleVariant = "button",
+  titleVariant,
   leading,
   trailingIcon,
   loading,
@@ -77,7 +79,7 @@ export const Button = ({
       ) : (
         <>
           {leading}
-          <Text variant={titleVariant}>{title}</Text>
+          <Text variant={titleVariant ?? (size === "lg" ? "title" : "button")}>{title}</Text>
           {trailingIcon && (
             <View className="absolute right-6">
               <Icon name={trailingIcon} />

@@ -46,6 +46,7 @@ export const useHome = () => {
     featured: featured.stays,
     featuredStatus: featured.status,
     retryFeatured: featured.retry,
+    openStay: (slug: string) => router.push({ pathname: "/stay/[slug]", params: { slug, src: "home" } }),
     emptyMessage: category === "all" ? "No stays yet." : `Nothing in ${STAY_TYPE_META[category].label} yet.`,
     reducedMotion,
   }

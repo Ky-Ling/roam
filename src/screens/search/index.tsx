@@ -41,7 +41,9 @@ export const SearchScreen = () => {
           contentInsetAdjustmentBehavior="automatic"
           contentContainerStyle={listContent}
           keyboardDismissMode="on-drag"
-          renderItem={({ item }) => <ResultCard {...item} onToggleSave={() => vm.toggleSave(item.id)} />}
+          renderItem={({ item }) => (
+            <ResultCard {...item} onPress={() => vm.openStay(item.id)} onToggleSave={() => vm.toggleSave(item.id)} />
+          )}
           ListEmptyComponent={
             <ResultsStatusView
               status={vm.status}

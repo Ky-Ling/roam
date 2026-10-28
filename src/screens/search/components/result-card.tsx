@@ -18,6 +18,7 @@ export type ResultCardProps = {
   photoAlt?: string
   saved?: boolean
   onToggleSave?: () => void
+  onPress?: () => void
 }
 
 /** One search result: photo on the left, facts on the right, heart in the top-right corner. */
@@ -32,11 +33,13 @@ export const ResultCard = ({
   photoAlt,
   saved,
   onToggleSave,
+  onPress,
 }: ResultCardProps) => (
   <View>
     <Pressable
       accessibilityRole="button"
       accessibilityLabel={`${title}, ${location}, rated ${rating}, $${pricePerNight} per night`}
+      onPress={onPress}
       className="flex-row gap-3 active:opacity-85"
     >
       <View className="h-36 w-34 overflow-hidden rounded-md bg-surface-muted corner-squircle">

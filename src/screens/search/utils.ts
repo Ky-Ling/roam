@@ -1,4 +1,4 @@
-import { AMENITY_META } from "@/constants/stays"
+import { AMENITY_META, PETS_META } from "@/constants/stays"
 import { sanityImageUrl, type Amenity, type SearchStay } from "@/lib/sanity"
 import { isNil, uniq } from "@/lib/utils"
 
@@ -16,15 +16,13 @@ const STANDOUT: Amenity[] = [
   "forestView",
 ]
 
-const PETS_TAG = { label: "Pet Friendly", icon: "pets" as const }
-
 /** Two tags: amenities the guest asked for, then the first standout, Pet Friendly, then the next standout. */
 const toTags = (stay: SearchStay, wanted: Amenity[]): ResultCardProps["tags"] => {
   const has = stay.amenities ?? []
   const standout = STANDOUT.filter((a) => has.includes(a))
   const amenities = uniq([...wanted.filter((a) => has.includes(a)), ...standout])
   const tags = amenities.map((a) => AMENITY_META[a])
-  const pets = stay.petsAllowed ? [PETS_TAG] : []
+  const pets = stay.petsAllowed ? [PETS_META] : []
 
   return [...tags.slice(0, 1), ...pets, ...tags.slice(1)].slice(0, 2)
 }
