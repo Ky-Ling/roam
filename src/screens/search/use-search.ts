@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context"
 
 import { STAYS } from "@/data/stays"
 import { constraintKey, constraintLabel, parseQuery, searchStays, type SortKey } from "@/lib/search"
+import { posthog } from "@/lib/posthog"
 import { isEmpty } from "@/lib/utils"
 
 import { SORT_OPTIONS } from "./constants"
@@ -40,10 +41,36 @@ export const useSearch = () => {
   const active = constraints.filter((c) => !off.includes(constraintKey(c)))
   const results = searchStays(STAYS, active, sort).map(toListing)
 
-  const toggleChip = (key: string) =>
+  const toggleChip = (key: string) => {
+    const enabled = off.includes(key)
+    posthog?.capture("search_constraint_toggled", { enabled })
     setOff((keys) => (keys.includes(key) ? keys.filter((k) => k !== key) : [...keys, key]))
+  }
 
-  const toggleSave = (id: string) => setSaved((ids) => (ids.includes(id) ? ids.filter((i) => i !== id) : [...ids, id]))
+  const toggleSave = (id: string) => {
+    const isSaved = saved.includes(id)
+    if (isSaved) {
+      posthog?.capture("stay_unsaved", { stay_id: id })
+    } else {
+      posthog?.capture("stay_saved", { stay_id: id })
+    }
+    setSaved((ids) => (ids.includes(id) ? ids.filter((i) => i !== id) : [...ids, id]))
+  }
+
+  const selectSort = (nextSort: SortKey) => {
+    posthog?.capture("search_sort_selected", { sort: nextSort })
+    setSort(nextSort)
+  }
+
+  const clearFilters = () => {
+    posthog?.capture("search_filters_cleared", { active_filter_count: active.length })
+    setOff(constraints.map(constraintKey))
+  }
+
+  const submit = () => {
+    posthog?.capture("search_submitted", { source: "search" })
+    router.setParams({ q: draft.trim() })
+  }
 
   const openSort = () => {
     const labels = SORT_OPTIONS.map((o) => o.label)
@@ -51,7 +78,7 @@ export const useSearch = () => {
       ActionSheetIOS.showActionSheetWithOptions(
         { title: "Sort by", options: [...labels, "Cancel"], cancelButtonIndex: labels.length },
         (i) => {
-          if (i < labels.length) setSort(SORT_OPTIONS[i].key)
+          if (i < labels.length) selectSort(SORT_OPTIONS[i].key)
         },
       )
 
@@ -60,12 +87,12 @@ export const useSearch = () => {
     // react-native-web's Alert is a no-op, so web steps through the options instead
     if (Platform.OS === "web") {
       const next = (SORT_OPTIONS.findIndex((o) => o.key === sort) + 1) % SORT_OPTIONS.length
-      setSort(SORT_OPTIONS[next].key)
+      selectSort(SORT_OPTIONS[next].key)
 
       return
     }
     Alert.alert("Sort by", undefined, [
-      ...SORT_OPTIONS.map((o) => ({ text: o.label, onPress: () => setSort(o.key) })),
+      ...SORT_OPTIONS.map((o) => ({ text: o.label, onPress: () => selectSort(o.key) })),
       { text: "Cancel", style: "cancel" as const },
     ])
   }
@@ -75,13 +102,13 @@ export const useSearch = () => {
     topInset: Platform.OS === "web" ? 96 : insets.top + 8,
     draft,
     setDraft,
-    submit: () => router.setParams({ q: draft.trim() }),
+    submit,
     goHome: () => router.navigate("/home"),
     chips,
     showChips: !isEmpty(chips),
     toggleChip,
     hasActiveFilters: !isEmpty(active),
-    clearFilters: () => setOff(constraints.map(constraintKey)),
+    clearFilters,
     results: results.map((r) => ({ ...r, saved: saved.includes(r.id) })),
     countLabel: `${results.length} ${results.length === 1 ? "stay" : "stays"}`,
     sortLabel: SORT_OPTIONS.find((o) => o.key === sort)?.label ?? "",

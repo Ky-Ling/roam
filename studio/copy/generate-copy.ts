@@ -12,6 +12,7 @@ import {checkCopy, type Copy} from './checks'
 import {factCheck} from './fact-check'
 import {factsJson, fetchStays, type StayRecord} from './facts'
 import {avoidText, GENERATE_INSTRUCTION} from './instructions'
+import {captureAiGeneration, createAiTraceId, shutdownPostHogAi} from './posthog-ai'
 
 // Agent Actions are experimental and only served on API version vX
 const client = getCliClient({apiVersion: 'vX'})
@@ -27,23 +28,51 @@ type Result =
   | {slug: string; status: 'failed'; failures: string[]; copy?: Copy}
   | {slug: string; status: 'skipped'; reason: string}
 
-const generate = async (stay: StayRecord, failures: string[]): Promise<Copy> => {
-  const doc = await client.agent.action.generate({
-    schemaId: SCHEMA_ID,
-    documentId: stay._id,
-    noWrite: true,
-    temperature: 0.3,
+const generate = async (stay: StayRecord, failures: string[], traceId: string): Promise<Copy> => {
+  const startedAt = Date.now()
+  const input = {
     instruction: GENERATE_INSTRUCTION,
-    instructionParams: {
-      facts: {type: 'constant', value: factsJson(stay)},
-      avoid: {type: 'constant', value: avoidText(failures)},
-    },
-    target: {include: ['summary', 'description']},
-  })
+    facts: factsJson(stay),
+    avoid: avoidText(failures),
+  }
 
-  return {
-    summary: String(doc.summary ?? '').trim(),
-    description: String(doc.description ?? '').trim(),
+  try {
+    const doc = await client.agent.action.generate({
+      schemaId: SCHEMA_ID,
+      documentId: stay._id,
+      noWrite: true,
+      temperature: 0.3,
+      instruction: GENERATE_INSTRUCTION,
+      instructionParams: {
+        facts: {type: 'constant', value: factsJson(stay)},
+        avoid: {type: 'constant', value: avoidText(failures)},
+      },
+      target: {include: ['summary', 'description']},
+    })
+    const copy = {
+      summary: String(doc.summary ?? '').trim(),
+      description: String(doc.description ?? '').trim(),
+    }
+    captureAiGeneration({
+      traceId,
+      name: 'sanity_agent_generate',
+      input,
+      output: copy,
+      temperature: 0.3,
+      startedAt,
+    })
+
+    return copy
+  } catch (error) {
+    captureAiGeneration({
+      traceId,
+      name: 'sanity_agent_generate',
+      input,
+      temperature: 0.3,
+      startedAt,
+      error,
+    })
+    throw error
   }
 }
 
@@ -61,13 +90,14 @@ const run = async (stay: StayRecord): Promise<Result> => {
   if (hasDraft && !dryRun)
     return {slug: stay.slug, status: 'skipped', reason: 'a draft already exists'}
 
+  const traceId = createAiTraceId()
   let failures: string[] = []
   let copy: Copy | undefined
   for (let attempt = 1; attempt <= ATTEMPTS; attempt++) {
-    copy = await generate(stay, failures)
+    copy = await generate(stay, failures, traceId)
     failures = checkCopy(copy, stay)
     // Layer 2 only runs on copy that already passes the cheap rules
-    if (failures.length === 0) failures = await factCheck(client, stay, copy)
+    if (failures.length === 0) failures = await factCheck(client, stay, copy, traceId)
     if (failures.length === 0) {
       if (!dryRun) await writeDraft(stay, copy)
 
@@ -120,7 +150,9 @@ const main = async () => {
   if (count('failed') > 0) process.exitCode = 1
 }
 
-main().catch((error) => {
-  console.error(error)
-  process.exit(1)
-})
+main()
+  .catch((error) => {
+    console.error(error)
+    process.exitCode = 1
+  })
+  .finally(shutdownPostHogAi)

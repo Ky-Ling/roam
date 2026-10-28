@@ -1,10 +1,12 @@
 import { useAuth, useUser } from "@clerk/expo"
 
+import { posthog } from "@/lib/posthog"
+
 export type SessionUser = { name?: string, firstName?: string, email: string, imageUrl?: string }
 
 /** The signed-in guest, from Clerk. isLoaded turns true once Clerk restores the session from the token cache. */
 export const useSession = () => {
-  const { isLoaded, isSignedIn, signOut } = useAuth()
+  const { isLoaded, isSignedIn, signOut: clerkSignOut } = useAuth()
   const { user: clerkUser } = useUser()
 
   const user: SessionUser | null = clerkUser
@@ -17,5 +19,10 @@ export const useSession = () => {
       }
     : null
 
-  return { isLoaded, isSignedIn: !!isSignedIn, user, signOut: () => signOut() }
+  const signOut = async () => {
+    posthog?.reset()
+    await clerkSignOut()
+  }
+
+  return { isLoaded, isSignedIn: !!isSignedIn, user, signOut }
 }
