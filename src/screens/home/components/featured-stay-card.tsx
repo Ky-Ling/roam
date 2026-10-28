@@ -3,20 +3,30 @@ import { StyleSheet, View } from "react-native"
 
 import { Icon } from "@/components/ui/icon"
 import { Text } from "@/components/ui/text"
-import type { Stay } from "@/data/stays"
+import { sanityImageUrl, type FeaturedStay } from "@/lib/sanity"
 import { colors } from "@/theme"
+
+// Twice the card's on-screen size, for sharp photos on 2x and 3x screens
+const PHOTO_SIZE = { width: 1200, height: 960 }
 
 // Darkens the photo's lower half so the white title reads on any image. One-off value, so it stays here.
 const scrim = { experimental_backgroundImage: "linear-gradient(to bottom, transparent 35%, rgba(11, 11, 26, 0.75))" }
 
 /** Full-width photo card. Not tappable until property details exist (plan 08). */
-export const FeaturedStayCard = ({ stay }: { stay: Stay }) => (
+export const FeaturedStayCard = ({ stay }: { stay: FeaturedStay }) => (
   <View
     accessible
     accessibilityLabel={`${stay.title}, ${stay.city}, ${stay.region}, rated ${stay.rating}`}
     className="h-70 overflow-hidden rounded-2xl bg-surface-muted corner-squircle"
   >
-    <Image source={{ uri: stay.imageUrl }} style={StyleSheet.absoluteFill} contentFit="cover" transition={200} />
+    {stay.photo && (
+      <Image
+        source={{ uri: sanityImageUrl(stay.photo, PHOTO_SIZE) }}
+        style={StyleSheet.absoluteFill}
+        contentFit="cover"
+        transition={200}
+      />
+    )}
     <View style={[StyleSheet.absoluteFill, scrim]} />
 
     <View className="absolute right-4 top-4 h-11 flex-row items-center gap-1.5 rounded-full bg-surface px-3.5">

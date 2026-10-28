@@ -4,8 +4,11 @@ import { colors } from "@/theme"
 
 // The platform's own tab bar: liquid glass on iOS 26, Material on Android. Tab switches never animate.
 // iOS can't draw the design's yellow pill, so selection is ink there; Android's indicator takes the yellow.
+// iOS 18 and earlier make the bar transparent at a scroll edge, and on any screen where it can't find the
+// scroll view (Search's nested FlatList, static Trips/Profile), so keep it solid everywhere. iOS 26 ignores it.
 export const AppTabs = () => (
   <NativeTabs
+    disableTransparentOnScrollEdge
     tintColor={colors.ink}
     iconColor={{ default: colors.inkSecondary, selected: colors.ink }}
     indicatorColor={colors.primary}

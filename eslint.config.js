@@ -9,7 +9,8 @@ const esToolkit = (helper) => `Use ${helper} from "@/lib/utils" (es-toolkit).`
 module.exports = defineConfig([
   expoConfig,
   {
-    ignores: ["dist/*"],
+    // studio/ is its own package with its own eslint.config.mjs and Prettier (no es-toolkit there)
+    ignores: ["dist/*", "studio/**"],
   },
   {
     plugins: { "@stylistic": stylistic },

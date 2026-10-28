@@ -1,4 +1,5 @@
-// Local stand-in for Sanity property documents until the content model is wired (plan 07).
+// Local stand-in for Sanity property documents, used only by Search until it moves to GROQ.
+// Home already reads live stays from Sanity (plan 09).
 // Fields mirror what the schema will need, so swapping the source leaves search and screens alone.
 
 export type StayType = "cabin" | "beach" | "city" | "villa"
